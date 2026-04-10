@@ -8,193 +8,197 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --teal: #1D9E75;
-    --teal-light: #5DCAA5;
-    --teal-dark: #0F6E56;
-    --dark: #1c1e1f;
-    --dark-2: #252729;
-    --dark-3: #2e3133;
-    --off-white: #f4f2ed;
-    --white: #ffffff;
-    --gray: #888780;
-    --gray-light: #D3D1C7;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--off-white); overflow-x: hidden; line-height: 1.6; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --teal: #1D9E75; --teal-light: #5DCAA5; --teal-dark: #0F6E56;
+  --dark: #1c1e1f; --dark-2: #252729; --dark-3: #2e3133;
+  --off-white: #f4f2ed; --white: #ffffff; --gray: #888780; --gray-light: #D3D1C7;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--off-white); overflow-x: hidden; line-height: 1.6; }
 
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4%; background: rgba(28,30,31,0.95); backdrop-filter: blur(12px); border-bottom: 0.5px solid rgba(255,255,255,0.06); }
-  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--white); text-decoration: none; }
-  .nav-back { display: flex; align-items: center; gap: 0.5rem; color: var(--gray-light); text-decoration: none; font-size: 0.85rem; font-weight: 300; transition: color 0.2s; }
-  .nav-back:hover { color: var(--teal-light); }
-  .nav-back svg { width: 16px; height: 16px; }
-  .nav-cta { background: var(--teal); color: var(--white); padding: 0.5rem 1.2rem; border-radius: 2px; text-decoration: none; font-size: 0.85rem; font-weight: 400; transition: background 0.2s; }
-  .nav-cta:hover { background: var(--teal-dark); }
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4%; background: rgba(28,30,31,0.95); backdrop-filter: blur(12px); border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--white); text-decoration: none; }
+.nav-back { display: flex; align-items: center; gap: 0.5rem; color: var(--gray-light); text-decoration: none; font-size: 0.85rem; font-weight: 300; transition: color 0.2s; }
+.nav-back:hover { color: var(--teal-light); }
+.nav-back svg { width: 16px; height: 16px; }
+.nav-cta { background: var(--teal); color: var(--white); padding: 0.5rem 1.2rem; border-radius: 2px; text-decoration: none; font-size: 0.85rem; font-weight: 400; transition: background 0.2s; }
+.nav-cta:hover { background: var(--teal-dark); }
 
-  /* BREADCRUMB */
-  .breadcrumb { margin-top: 70px; padding: 1rem 4%; display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; font-weight: 300; color: var(--gray); border-bottom: 0.5px solid rgba(255,255,255,0.04); }
-  .breadcrumb a { color: var(--gray); text-decoration: none; transition: color 0.2s; }
-  .breadcrumb a:hover { color: var(--teal-light); }
-  .breadcrumb span { color: var(--off-white); }
+/* BREADCRUMB */
+.breadcrumb { margin-top: 70px; padding: 1rem 4%; display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; font-weight: 300; color: var(--gray); border-bottom: 0.5px solid rgba(255,255,255,0.04); }
+.breadcrumb a { color: var(--gray); text-decoration: none; transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--teal-light); }
+.breadcrumb span { color: var(--off-white); }
 
-  /* PRODUCT LAYOUT */
-  .product-page { max-width: 1200px; margin: 0 auto; padding: 3rem 4% 6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+/* LAYOUT */
+.product-page { max-width: 1200px; margin: 0 auto; padding: 3rem 4% 6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 
-  /* GALLERY */
-  .gallery { position: sticky; top: 100px; }
-  .gallery-main { width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 2px; background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.06); margin-bottom: 0.75rem; position: relative; cursor: zoom-in; }
-  .gallery-main img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
-  .gallery-main:hover img { transform: scale(1.04); }
-  .gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
-  .gallery-thumb { aspect-ratio: 1; overflow: hidden; border-radius: 1px; background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.06); cursor: pointer; transition: border-color 0.2s, opacity 0.2s; opacity: 0.65; }
-  .gallery-thumb.active { border-color: var(--teal); opacity: 1; }
-  .gallery-thumb:hover { opacity: 0.9; }
-  .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .gallery-badge { position: absolute; top: 12px; left: 12px; background: var(--teal); color: var(--white); font-size: 0.7rem; font-weight: 400; padding: 0.25rem 0.6rem; border-radius: 1px; letter-spacing: 0.06em; text-transform: uppercase; }
+/* GALLERY */
+.gallery { position: sticky; top: 100px; }
+.gallery-main { width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 2px; background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.06); margin-bottom: 0.75rem; position: relative; cursor: zoom-in; }
+.gallery-main img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+.gallery-main:hover img { transform: scale(1.04); }
+.gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+.gallery-thumb { aspect-ratio: 1; overflow: hidden; border-radius: 1px; background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.06); cursor: pointer; transition: border-color 0.2s, opacity 0.2s; opacity: 0.6; }
+.gallery-thumb.active { border-color: var(--teal); opacity: 1; }
+.gallery-thumb:hover { opacity: 0.88; }
+.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-badge { position: absolute; top: 12px; left: 12px; background: var(--teal); color: var(--white); font-size: 0.7rem; font-weight: 400; padding: 0.25rem 0.6rem; border-radius: 1px; letter-spacing: 0.06em; text-transform: uppercase; }
 
-  /* PRODUCT INFO */
-  .product-info { display: flex; flex-direction: column; gap: 0; }
-  .product-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem; }
-  .product-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--white); margin-bottom: 1rem; }
-  .product-rating { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.5rem; }
-  .stars { display: flex; gap: 2px; }
-  .star { color: var(--teal); font-size: 14px; }
-  .rating-text { font-size: 0.82rem; font-weight: 300; color: var(--gray); }
+/* PRODUCT INFO */
+.product-info { display: flex; flex-direction: column; gap: 0; }
+.product-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem; }
+.product-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--white); margin-bottom: 1rem; }
+.product-rating { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.5rem; }
+.stars { display: flex; gap: 2px; }
+.star { color: var(--teal); font-size: 14px; }
+.rating-text { font-size: 0.82rem; font-weight: 300; color: var(--gray); }
 
-  /* PRICE */
-  .price-block { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.06); border-radius: 2px; padding: 1.5rem; margin-bottom: 1.5rem; }
-  .price-main { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; }
-  .price-current { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--white); font-weight: 400; }
-  .price-unit { font-size: 0.85rem; font-weight: 300; color: var(--gray); }
-  .price-tiers { display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 0.5px solid rgba(255,255,255,0.06); }
-  .price-tier { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; font-weight: 300; color: var(--gray-light); }
-  .price-tier.best { color: var(--teal-light); font-weight: 400; }
-  .price-tier-qty { }
-  .price-tier-val { font-weight: 400; }
-  .price-ht-note { font-size: 0.72rem; color: var(--gray); margin-top: 0.75rem; font-style: italic; }
+/* PRICE BLOCK */
+.price-block { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.06); border-radius: 2px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.price-main { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; }
+.price-current { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--white); font-weight: 400; }
+.price-unit { font-size: 0.85rem; font-weight: 300; color: var(--gray); }
+.price-tiers { display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 0.5px solid rgba(255,255,255,0.06); }
+.price-tier { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; font-weight: 300; color: var(--gray-light); }
+.price-tier.best { color: var(--teal-light); font-weight: 400; }
+.price-tier-val { font-weight: 400; }
+.price-ht-note { font-size: 0.72rem; color: var(--gray); margin-top: 0.75rem; font-style: italic; }
 
-  /* CONFIGURATOR */
-  .configurator { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1.5rem; }
-  .config-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .config-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); }
-  .config-select { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.12); border-radius: 1px; padding: 0.75rem 1rem; color: var(--off-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; outline: none; transition: border-color 0.2s; width: 100%; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888780' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
-  .config-select:focus { border-color: var(--teal); }
-  .config-select option { background: var(--dark-2); }
-  .config-input { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.12); border-radius: 1px; padding: 0.75rem 1rem; color: var(--off-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; outline: none; transition: border-color 0.2s; width: 100%; }
-  .config-input:focus { border-color: var(--teal); }
-  .config-input::placeholder { color: var(--gray); }
-  .config-hint { font-size: 0.75rem; font-weight: 300; color: var(--gray); margin-top: 0.3rem; }
+/* CONFIGURATOR */
+.configurator { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1.5rem; }
+.config-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.config-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); }
+.config-select { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.12); border-radius: 1px; padding: 0.75rem 1rem; color: var(--off-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; outline: none; transition: border-color 0.2s; width: 100%; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888780' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+.config-select:focus { border-color: var(--teal); }
+.config-select option { background: var(--dark-2); }
+.config-input { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.12); border-radius: 1px; padding: 0.75rem 1rem; color: var(--off-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; outline: none; transition: border-color 0.2s; width: 100%; }
+.config-input:focus { border-color: var(--teal); }
+.config-input::placeholder { color: var(--gray); }
+.config-hint { font-size: 0.75rem; font-weight: 300; color: var(--gray); margin-top: 0.3rem; }
 
-  /* PREVIEW */
-  .preview-block { background: var(--dark-3); border: 0.5px solid rgba(255,255,255,0.06); border-radius: 2px; padding: 1.2rem; margin-bottom: 1.5rem; }
-  .preview-label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.8rem; font-weight: 400; }
-  .preview-plate { width: 200px; height: 50px; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.3s ease; border: 0.5px solid rgba(0,0,0,0.2); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
-  .preview-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
+/* MULTI-TEXT FIELDS */
+.textes-container { display: flex; flex-direction: column; gap: 0.75rem; }
+.texte-field-wrap { display: flex; flex-direction: column; gap: 0.3rem; }
+.texte-field-num { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal); }
 
-  /* QTY + CTA */
-  .qty-cta { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
-  .qty-row { display: flex; align-items: center; gap: 1rem; }
-  .qty-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); }
-  .qty-ctrl { display: flex; align-items: center; border: 0.5px solid rgba(255,255,255,0.12); border-radius: 1px; overflow: hidden; }
-  .qty-btn { background: var(--dark-2); color: var(--off-white); border: none; width: 36px; height: 36px; font-size: 1.1rem; cursor: pointer; transition: background 0.15s; display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; }
-  .qty-btn:hover { background: var(--dark-3); }
-  .qty-val { width: 44px; height: 36px; text-align: center; background: var(--dark); color: var(--off-white); border: none; border-left: 0.5px solid rgba(255,255,255,0.06); border-right: 0.5px solid rgba(255,255,255,0.06); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; }
-  .qty-total { font-size: 0.85rem; color: var(--teal-light); font-weight: 400; margin-left: auto; }
-  .btn-pay { background: var(--teal); color: var(--white); border: none; border-radius: 1px; padding: 1rem 2rem; font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 400; cursor: pointer; width: 100%; transition: background 0.2s, transform 0.15s; display: flex; align-items: center; justify-content: center; gap: 0.75rem; text-decoration: none; }
-  .btn-pay:hover { background: var(--teal-dark); transform: translateY(-1px); }
-  .btn-pay svg { width: 20px; height: 20px; }
-  .btn-contact { background: transparent; color: var(--off-white); border: 0.5px solid rgba(255,255,255,0.15); border-radius: 1px; padding: 0.85rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; cursor: pointer; width: 100%; transition: border-color 0.2s; text-align: center; text-decoration: none; display: block; }
-  .btn-contact:hover { border-color: var(--teal-light); color: var(--teal-light); }
-  .pay-note { font-size: 0.75rem; font-weight: 300; color: var(--gray); text-align: center; margin-top: 0.5rem; }
-  .pay-note a { color: var(--teal-light); text-decoration: none; }
+/* PREVIEW BLOCK — multi-plate */
+.preview-block { background: var(--dark-3); border: 0.5px solid rgba(255,255,255,0.06); border-radius: 2px; padding: 1.2rem; margin-bottom: 1.5rem; }
+.preview-block-label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.8rem; font-weight: 400; }
+.previews-stack { display: flex; flex-direction: column; gap: 0.75rem; }
+.preview-row { display: flex; align-items: center; gap: 0.75rem; }
+.preview-row-num { font-size: 0.68rem; color: var(--gray); font-weight: 300; min-width: 54px; }
+.preview-plate { height: 46px; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all 0.3s ease; border: 0.5px solid rgba(0,0,0,0.2); box-shadow: 0 2px 8px rgba(0,0,0,0.3); flex: 1; }
+.preview-plate.dim-100x25 { max-width: 240px; height: 60px; }
+.preview-plate.dim-100x20 { max-width: 240px; height: 48px; }
+.preview-plate.dim-90x25  { max-width: 216px; height: 60px; }
+.preview-plate.dim-90x20  { max-width: 216px; height: 48px; }
+.preview-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 90%; text-align: center; }
 
-  /* TRUST BADGES */
-  .trust-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
-  .trust-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; font-weight: 300; color: var(--gray-light); }
-  .trust-item svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--teal); }
+/* QTY + CTA */
+.qty-cta { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+.qty-row { display: flex; align-items: center; gap: 1rem; }
+.qty-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); }
+.qty-ctrl { display: flex; align-items: center; border: 0.5px solid rgba(255,255,255,0.12); border-radius: 1px; overflow: hidden; }
+.qty-btn { background: var(--dark-2); color: var(--off-white); border: none; width: 36px; height: 36px; font-size: 1.1rem; cursor: pointer; transition: background 0.15s; display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; }
+.qty-btn:hover { background: var(--dark-3); }
+.qty-val { width: 44px; height: 36px; text-align: center; background: var(--dark); color: var(--off-white); border: none; border-left: 0.5px solid rgba(255,255,255,0.06); border-right: 0.5px solid rgba(255,255,255,0.06); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; }
+.qty-total { font-size: 0.85rem; color: var(--teal-light); font-weight: 400; margin-left: auto; }
+.btn-pay { background: var(--teal); color: var(--white); border: none; border-radius: 1px; padding: 1rem 2rem; font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 400; cursor: pointer; width: 100%; transition: background 0.2s, transform 0.15s; display: flex; align-items: center; justify-content: center; gap: 0.75rem; text-decoration: none; }
+.btn-pay:hover { background: var(--teal-dark); transform: translateY(-1px); }
+.btn-pay svg { width: 20px; height: 20px; }
+.btn-contact { background: transparent; color: var(--off-white); border: 0.5px solid rgba(255,255,255,0.15); border-radius: 1px; padding: 0.85rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; cursor: pointer; width: 100%; transition: border-color 0.2s; text-align: center; text-decoration: none; display: block; }
+.btn-contact:hover { border-color: var(--teal-light); color: var(--teal-light); }
+.pay-note { font-size: 0.75rem; font-weight: 300; color: var(--gray); text-align: center; }
+.pay-note a { color: var(--teal-light); text-decoration: none; }
 
-  /* ACCORDIONS */
-  .accordions { border-top: 0.5px solid rgba(255,255,255,0.06); }
-  .accordion { border-bottom: 0.5px solid rgba(255,255,255,0.06); }
-  .accordion-header { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 0; cursor: pointer; user-select: none; transition: color 0.2s; }
-  .accordion-header:hover { color: var(--teal-light); }
-  .accordion-title { font-size: 0.88rem; font-weight: 400; letter-spacing: 0.02em; }
-  .accordion-icon { width: 16px; height: 16px; color: var(--gray); transition: transform 0.25s; flex-shrink: 0; }
-  .accordion-icon.open { transform: rotate(45deg); }
-  .accordion-body { display: none; padding-bottom: 1.2rem; font-size: 0.85rem; font-weight: 300; color: var(--gray-light); line-height: 1.8; }
-  .accordion-body.open { display: block; }
-  .accordion-body strong { color: var(--off-white); font-weight: 400; }
-  .accordion-body ul { margin: 0.5rem 0 0 1rem; display: flex; flex-direction: column; gap: 0.35rem; }
-  .accordion-body table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; }
-  .accordion-body table th { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray); padding: 0.4rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.08); text-align: left; font-weight: 400; }
-  .accordion-body table td { padding: 0.4rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.04); color: var(--gray-light); font-weight: 300; }
-  .accordion-body table td:last-child { text-align: right; color: var(--teal-light); font-weight: 400; }
+/* CONFIRM BANNER */
+.confirm-banner { display: none; background: rgba(29,158,117,0.1); border: 0.5px solid rgba(29,158,117,0.35); border-radius: 2px; padding: 1.2rem 1.5rem; gap: 0.75rem; align-items: flex-start; }
+.confirm-banner.visible { display: flex; }
+.confirm-icon { flex-shrink: 0; color: var(--teal-light); margin-top: 2px; }
+.confirm-icon svg { width: 20px; height: 20px; }
+.confirm-text strong { color: var(--teal-light); font-weight: 400; display: block; margin-bottom: 0.25rem; font-size: 0.9rem; }
+.confirm-text p { font-size: 0.82rem; font-weight: 300; color: var(--gray-light); line-height: 1.6; }
 
-  /* FULL WIDTH DESCRIPTION */
-  .product-description { max-width: 1200px; margin: 0 auto; padding: 0 4% 6rem; }
-  .desc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5px; background: rgba(255,255,255,0.05); border: 0.5px solid rgba(255,255,255,0.05); margin-top: 3rem; }
-  .desc-card { background: var(--dark-2); padding: 2rem; }
-  .desc-card h4 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--white); margin-bottom: 0.6rem; }
-  .desc-card p { font-size: 0.85rem; font-weight: 300; color: var(--gray); line-height: 1.7; }
-  .desc-card .icon { width: 32px; height: 32px; background: rgba(29,158,117,0.12); border: 0.5px solid rgba(29,158,117,0.25); border-radius: 2px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
-  .desc-card .icon svg { width: 16px; height: 16px; }
+/* TRUST BADGES */
+.trust-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
+.trust-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; font-weight: 300; color: var(--gray-light); }
+.trust-item svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--teal); }
 
-  /* FOOTER */
-  footer { background: var(--dark); border-top: 0.5px solid rgba(255,255,255,0.06); padding: 2rem 4%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-  .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--white); }
-  .footer-text { font-size: 0.78rem; font-weight: 300; color: var(--gray); }
+/* ACCORDIONS */
+.accordions { border-top: 0.5px solid rgba(255,255,255,0.06); }
+.accordion { border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+.accordion-header { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 0; cursor: pointer; user-select: none; transition: color 0.2s; }
+.accordion-header:hover { color: var(--teal-light); }
+.accordion-title { font-size: 0.88rem; font-weight: 400; }
+.accordion-icon { width: 16px; height: 16px; color: var(--gray); transition: transform 0.25s; flex-shrink: 0; }
+.accordion-icon.open { transform: rotate(45deg); }
+.accordion-body { display: none; padding-bottom: 1.2rem; font-size: 0.85rem; font-weight: 300; color: var(--gray-light); line-height: 1.8; }
+.accordion-body.open { display: block; }
+.accordion-body strong { color: var(--off-white); font-weight: 400; }
+.accordion-body ul { margin: 0.5rem 0 0 1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.accordion-body table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; }
+.accordion-body table th { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray); padding: 0.4rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.08); text-align: left; font-weight: 400; }
+.accordion-body table td { padding: 0.4rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.04); color: var(--gray-light); font-weight: 300; }
+.accordion-body table td:last-child { text-align: right; color: var(--teal-light); font-weight: 400; }
 
-  @media (max-width: 900px) {
-    .product-page { grid-template-columns: 1fr; gap: 3rem; }
-    .gallery { position: static; }
-    .desc-grid { grid-template-columns: 1fr; }
-    .trust-badges { grid-template-columns: 1fr; }
-  }
+/* MODAL */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 300; align-items: center; justify-content: center; padding: 1rem; }
+.modal-overlay.visible { display: flex; }
+.modal { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.09); border-radius: 4px; width: 100%; max-width: 580px; max-height: 92vh; overflow-y: auto; animation: modalIn 0.25s ease; }
+@keyframes modalIn { from { opacity:0; transform: translateY(18px); } to { opacity:1; transform: translateY(0); } }
+.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 1.75rem 0; margin-bottom: 1.25rem; }
+.modal-title { font-family: 'DM Serif Display', serif; font-size: 1.4rem; font-weight: 400; color: var(--white); }
+.modal-close { background: none; border: none; color: var(--gray); cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; transition: color 0.2s; }
+.modal-close:hover { color: var(--off-white); }
+.modal-close svg { width: 20px; height: 20px; }
+.modal-body { padding: 0 1.75rem 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
+.modal-section-label { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); padding-bottom: 0.5rem; border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+.modal-summary { background: var(--dark-3); border: 0.5px solid rgba(255,255,255,0.06); border-radius: 2px; padding: 1rem 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.mrow { display: flex; justify-content: space-between; align-items: flex-start; font-size: 0.85rem; font-weight: 300; color: var(--gray-light); gap: 1rem; }
+.mrow .mval { color: var(--off-white); font-weight: 400; text-align: right; }
+.mrow.mtotal { border-top: 0.5px solid rgba(255,255,255,0.08); padding-top: 0.6rem; margin-top: 0.2rem; }
+.mrow.mtotal .mlbl { font-weight: 400; color: var(--off-white); font-size: 0.9rem; }
+.mrow.mtotal .mval { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--teal-light); }
+.amount-box { background: rgba(29,158,117,0.08); border: 0.5px solid rgba(29,158,117,0.3); border-radius: 2px; padding: 1rem 1.4rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.amount-label { font-size: 0.9rem; font-weight: 400; color: var(--teal-light); }
+.amount-value { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--white); white-space: nowrap; }
+.modal-field { display: flex; flex-direction: column; gap: 0.35rem; }
+.modal-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray); }
+.modal-input { background: var(--dark-3); border: 0.5px solid rgba(255,255,255,0.1); border-radius: 1px; padding: 0.75rem 1rem; color: var(--off-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; outline: none; transition: border-color 0.2s; width: 100%; }
+.modal-input:focus { border-color: var(--teal); }
+.modal-input::placeholder { color: var(--gray); }
+.modal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.modal-sending { display: none; text-align: center; padding: 0.5rem; font-size: 0.82rem; color: var(--teal-light); font-weight: 300; }
+.modal-sending.visible { display: block; }
 
-  /* MULTI-TEXT FIELDS */
-  .textes-container { display: flex; flex-direction: column; gap: 0.75rem; }
-  .texte-field-wrap { display: flex; flex-direction: column; gap: 0.3rem; }
-  .texte-field-num { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal); }
-  /* MODAL */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 300; align-items: center; justify-content: center; padding: 1rem; }
-  .modal-overlay.visible { display: flex; }
-  .modal { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.09); border-radius: 4px; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; animation: modalIn 0.25s ease; }
-  @keyframes modalIn { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
-  .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 1.75rem 0; margin-bottom: 1.25rem; }
-  .modal-title { font-family: 'DM Serif Display', serif; font-size: 1.4rem; font-weight: 400; color: var(--white); }
-  .modal-close { background: none; border: none; color: var(--gray); cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; transition: color 0.2s; }
-  .modal-close:hover { color: var(--off-white); }
-  .modal-close svg { width: 20px; height: 20px; }
-  .modal-body { padding: 0 1.75rem 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
-  .modal-section-title { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); padding-bottom: 0.5rem; border-bottom: 0.5px solid rgba(255,255,255,0.06); }
-  .modal-field { display: flex; flex-direction: column; gap: 0.35rem; }
-  .modal-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray); }
-  .modal-input { background: var(--dark-3); border: 0.5px solid rgba(255,255,255,0.1); border-radius: 1px; padding: 0.75rem 1rem; color: var(--off-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; outline: none; transition: border-color 0.2s; width: 100%; }
-  .modal-input:focus { border-color: var(--teal); }
-  .modal-input::placeholder { color: var(--gray); }
-  .modal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-  .modal-summary { background: var(--dark-3); border: 0.5px solid rgba(255,255,255,0.06); border-radius: 2px; padding: 1rem 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
-  .mrow { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 300; color: var(--gray-light); }
-  .mrow.total { border-top: 0.5px solid rgba(255,255,255,0.08); padding-top: 0.6rem; margin-top: 0.2rem; }
-  .mrow.total .mlbl { font-weight: 400; color: var(--off-white); font-size: 0.9rem; }
-  .mrow.total .mval { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--teal-light); }
-  .amount-box { background: rgba(29,158,117,0.08); border: 0.5px solid rgba(29,158,117,0.3); border-radius: 2px; padding: 1rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-  .amount-label { font-size: 0.9rem; font-weight: 400; color: var(--teal-light); }
-  .amount-value { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--white); white-space: nowrap; }
-  .confirm-banner { display: none; background: rgba(29,158,117,0.1); border: 0.5px solid rgba(29,158,117,0.35); border-radius: 2px; padding: 1.2rem 1.5rem; margin-top: 0.75rem; gap: 0.75rem; align-items: flex-start; }
-  .confirm-banner.visible { display: flex; }
-  .confirm-icon { flex-shrink: 0; color: var(--teal-light); margin-top: 2px; }
-  .confirm-icon svg { width: 20px; height: 20px; }
-  .confirm-text strong { color: var(--teal-light); font-weight: 400; display: block; margin-bottom: 0.25rem; font-size: 0.9rem; }
-  .confirm-text p { font-size: 0.82rem; font-weight: 300; color: var(--gray-light); line-height: 1.6; }
-  @media (max-width: 600px) { .modal-row { grid-template-columns: 1fr; } }
+/* DESC GRID */
+.product-description { max-width: 1200px; margin: 0 auto; padding: 0 4% 6rem; }
+.desc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5px; background: rgba(255,255,255,0.05); margin-top: 3rem; }
+.desc-card { background: var(--dark-2); padding: 2rem; }
+.desc-card h4 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--white); margin-bottom: 0.6rem; }
+.desc-card p { font-size: 0.85rem; font-weight: 300; color: var(--gray); line-height: 1.7; }
+.desc-card .dicon { width: 32px; height: 32px; background: rgba(29,158,117,0.12); border: 0.5px solid rgba(29,158,117,0.25); border-radius: 2px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+.desc-card .dicon svg { width: 16px; height: 16px; }
+
+/* FOOTER */
+footer { background: var(--dark); border-top: 0.5px solid rgba(255,255,255,0.06); padding: 2rem 4%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--white); }
+.footer-text { font-size: 0.78rem; font-weight: 300; color: var(--gray); }
+
+@media (max-width: 900px) {
+  .product-page { grid-template-columns: 1fr; gap: 3rem; }
+  .gallery { position: static; }
+  .desc-grid { grid-template-columns: 1fr; }
+  .trust-badges { grid-template-columns: 1fr; }
+  .modal-row { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Laserta</a>
   <a href="index.html" class="nav-back">
@@ -204,7 +208,6 @@
   <a href="index.html#contact" class="nav-cta">Devis sur mesure</a>
 </nav>
 
-<!-- BREADCRUMB -->
 <div class="breadcrumb">
   <a href="index.html">Accueil</a>
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="#888780" stroke-width="1"/></svg>
@@ -213,73 +216,63 @@
   <span>Plaque boîte aux lettres</span>
 </div>
 
-<!-- PRODUCT PAGE -->
 <div class="product-page">
 
   <!-- GALLERY -->
   <div class="gallery">
-    <div class="gallery-main" id="mainImg">
+    <div class="gallery-main">
       <div class="gallery-badge">Personnalisable</div>
-      <img id="mainPhoto" src="https://i.ebayimg.com/images/g/a0MAAeSwmxlpovhA/s-l1600.png" alt="Plaque boîte aux lettres personnalisée Laserta — acier brossé">
+      <img id="mainPhoto" src="https://i.ebayimg.com/images/g/a0MAAeSwmxlpovhA/s-l1600.png" alt="Plaque boîte aux lettres personnalisée Laserta">
     </div>
     <div class="gallery-thumbs">
-      <div class="gallery-thumb active" onclick="setPhoto(0, this)">
-        <img src="https://i.ebayimg.com/images/g/a0MAAeSwmxlpovhA/s-l500.jpg" alt="Vue 1 — acier brossé">
-      </div>
-      <div class="gallery-thumb" onclick="setPhoto(1, this)">
-        <img src="https://i.ebayimg.com/images/g/9DQAAeSwjH5pojBE/s-l500.jpg" alt="Vue 2 — or brossé">
-      </div>
-      <div class="gallery-thumb" onclick="setPhoto(2, this)">
-        <img src="https://i.ebayimg.com/images/g/RrMAAeSwTKRpovhn/s-l500.jpg" alt="Vue 3 — noir mat">
-      </div>
-      <div class="gallery-thumb" onclick="setPhoto(3, this)">
-        <img src="https://i.ebayimg.com/images/g/BHAAAeSwREFpojBR/s-l500.jpg" alt="Vue 4 — détail adhésif">
-      </div>
+      <div class="gallery-thumb active" onclick="setPhoto(0,this)"><img src="https://i.ebayimg.com/images/g/a0MAAeSwmxlpovhA/s-l500.jpg" alt="Acier brossé"></div>
+      <div class="gallery-thumb" onclick="setPhoto(1,this)"><img src="https://i.ebayimg.com/images/g/9DQAAeSwjH5pojBE/s-l500.jpg" alt="Or brossé"></div>
+      <div class="gallery-thumb" onclick="setPhoto(2,this)"><img src="https://i.ebayimg.com/images/g/RrMAAeSwTKRpovhn/s-l500.jpg" alt="Noir mat"></div>
+      <div class="gallery-thumb" onclick="setPhoto(3,this)"><img src="https://i.ebayimg.com/images/g/BHAAAeSwREFpojBR/s-l500.jpg" alt="Adhésif dos"></div>
     </div>
   </div>
 
   <!-- PRODUCT INFO -->
   <div class="product-info">
     <div class="product-label">Laserta · Signalétique des copropriétés</div>
-    <h1 class="product-title">Plaque Boîte aux Lettres Personnalisée — Acrylique</h1>
-
+    <h1 class="product-title">Plaque Boîte aux Lettres Personnalisée · Acrylique gravé laser</h1>
     <div class="product-rating">
-      <div class="stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-      </div>
-      <span class="rating-text">100 % d'évaluations positives</span>
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <span class="rating-text">2 avis · 7 vendus · 100 % d'évaluations positives</span>
     </div>
 
     <!-- PRICE -->
     <div class="price-block">
       <div class="price-main">
         <span class="price-current" id="priceDisplay">5,99 €</span>
-        <span class="price-unit">/ pièce</span>
+        <span class="price-unit">/ pièce HT</span>
       </div>
       <div class="price-tiers">
-        <div class="price-tier"><span class="price-tier-qty">1 pièce</span><span class="price-tier-val">5,99 € / pièce</span></div>
-        <div class="price-tier"><span class="price-tier-qty">2 pièces</span><span class="price-tier-val">5,39 € / pièce</span></div>
-        <div class="price-tier"><span class="price-tier-qty">3 pièces</span><span class="price-tier-val">5,09 € / pièce</span></div>
-        <div class="price-tier best"><span class="price-tier-qty">4 pièces et +</span><span class="price-tier-val">4,79 € / pièce ✦ meilleur tarif</span></div>
+        <div class="price-tier"><span>1 pièce</span><span class="price-tier-val">5,99 € / pièce</span></div>
+        <div class="price-tier"><span>2 pièces</span><span class="price-tier-val">5,39 € / pièce</span></div>
+        <div class="price-tier"><span>3 pièces</span><span class="price-tier-val">5,09 € / pièce</span></div>
+        <div class="price-tier best"><span>4 pièces et +</span><span class="price-tier-val">4,79 € / pièce ✦ meilleur tarif</span></div>
       </div>
-      <p class="price-ht-note">TVA non applicable — article 293 B du CGI · Depuis France</p>
+      <p class="price-ht-note">TVA non applicable — article 293 B du CGI · Made in France · Nice</p>
     </div>
 
     <!-- CONFIGURATOR -->
     <div class="configurator">
-     
-    <div class="config-group">
-        <label class="config-label" for="couleur">Dimensions</label>
-        <select class="config-select" id="couleur" onchange="updatePreview()">
+
+      <!-- DIMENSIONS -->
+      <div class="config-group">
+        <label class="config-label" for="dimensions">Dimensions</label>
+        <select class="config-select" id="dimensions" onchange="updatePreview()">
           <option value="">— Sélectionner —</option>
-          <option value="acier">100x25 mm</option>
-          <option value="or">100x20 mm</option>
-          <option value="noir">90x25 mm</option>
-          <option value="blanc">90x20 mm</option>
+          <option value="100x25">100 × 25 mm — réf. R101 · 8,99 €</option>
+          <option value="100x20" selected>100 × 20 mm — réf. R102 · 7,99 €</option>
+          <option value="90x25">90 × 25 mm — réf. R103 · 10,99 €</option>
+          <option value="90x20">90 × 20 mm — réf. R104 · 9,99 €</option>
         </select>
+        <span class="config-hint">Le tarif de base indiqué est pour la matière Acier brossé · variable selon la matière</span>
       </div>
 
-     
+      <!-- COULEUR -->
       <div class="config-group">
         <label class="config-label" for="couleur">Couleur / Matière</label>
         <select class="config-select" id="couleur" onchange="updatePreview()">
@@ -291,6 +284,7 @@
         </select>
       </div>
 
+      <!-- POLICE -->
       <div class="config-group">
         <label class="config-label" for="police">Police d'écriture</label>
         <select class="config-select" id="police" onchange="updatePreview()">
@@ -302,23 +296,24 @@
         </select>
       </div>
 
-            <div class="config-group" id="textesGroup">
+      <!-- TEXTES DYNAMIQUES -->
+      <div class="config-group" id="textesGroup">
         <label class="config-label">Texte(s) à graver</label>
         <div class="textes-container" id="textesContainer"></div>
-        <span class="config-hint">30 caractères max par plaque · Majuscules, minuscules, espaces et accents acceptés</span>
+        <span class="config-hint">30 caractères max · Majuscules, minuscules, espaces, chiffres et accents acceptés</span>
       </div>
 
     </div>
 
-    <!-- LIVE PREVIEW -->
+    <!-- APERÇU MULTI-PLAQUES -->
     <div class="preview-block">
-      <div class="preview-label">Aperçu en temps réel — Plaque 1</div>
-      <div class="preview-plate" id="previewPlate">
-        <span class="preview-text" id="previewText" style="color:#888780;font-style:italic;font-size:11px;">Sélectionnez vos options pour voir l'aperçu</span>
+      <div class="preview-block-label">Aperçu en temps réel</div>
+      <div class="previews-stack" id="previewsStack">
+        <!-- Generated by JS -->
       </div>
     </div>
 
-    <!-- QTY + BUY -->
+    <!-- QTY + CTA -->
     <div class="qty-cta">
       <div class="qty-row">
         <span class="qty-label">Quantité</span>
@@ -332,114 +327,80 @@
 
       <button class="btn-pay" onclick="openModal()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-        Commander &amp; Payer
+        Commander &amp; Payer via Revolut
       </button>
 
-      <a href="/cdn-cgi/l/email-protection#5e363b3232311e323f2d3b2c2a3f70382c612d2b3c343b3d2a631d3133333f303a3b7e2e323f2f2b3b7e3c319df02a3b7e3f2b267e323b2a2a2c3b2d783c313a27631c313034312b2c727b6e1a7b6e1f7b6e1a7b6e1f143b7e2d312b363f372a3b7e3d3133333f303a3b2c7e2b303b7e2e323f2f2b3b7e3c319df02a3b7e3f2b267e323b2a2a2c3b2d707b6e1a7b6e1f7b6e1a7b6e1f0a3b262a3b7e9dfe7e392c3f283b2c7e647b6e1a7b6e1f1d312b323b2b2c7e647b6e1a7b6e1f0e3132373d3b7e647b6e1a7b6e1f0f2b3f302a372a9df77e647b6e1a7b6e1f7b6e1a7b6e1f133b2c3d37" class="btn-contact">
-        Préférer commander par email
-      </a>
+      <a href="mailto:hello@laserta.fr?subject=Commande%20plaque%20bo%C3%AEte%20aux%20lettres" class="btn-contact">Préférer commander par email</a>
 
-            <div class="confirm-banner" id="confirmBanner">
+      <div class="confirm-banner" id="confirmBanner">
         <div class="confirm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
         <div class="confirm-text">
           <strong>Vos informations de commande ont bien été reçues !</strong>
-          <p>Merci de procéder au règlement pour finaliser votre commande. Vous allez être redirigé vers la page de paiement. Question ? <a href="mailto:hello@laserta.fr" style="color:var(--teal-light);">hello@laserta.fr</a></p>
+          <p>Merci de procéder au règlement pour finaliser votre commande. Vous êtes redirigé vers Revolut… En cas de question : <a href="mailto:hello@laserta.fr" style="color:var(--teal-light)">hello@laserta.fr</a></p>
         </div>
       </div>
-      <p class="pay-note">Paiement sécurisé via <strong>Revolut</strong> · Vos informations de livraison nous sont transmises automatiquement à la validation · <a href="mailto:hello@laserta.fr">hello@laserta.fr</a></p>
+
+      <p class="pay-note">Paiement sécurisé via <strong>Revolut</strong> · Vos données sont transmises de façon sécurisée · <a href="mailto:hello@laserta.fr">hello@laserta.fr</a></p>
     </div>
 
     <!-- TRUST BADGES -->
     <div class="trust-badges">
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
-        Gravure laser made in France
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="22" height="16" rx="2"/><path d="M1 9h22"/></svg>
-        Adhésif 3M inclus au dos
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Expédié depuis la France
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Livraison Lettre Verte OFFERTE
-      </div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>Gravure laser précise</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="22" height="16" rx="2"/><path d="M1 9h22"/></svg>Adhésif 3M inclus au dos</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Expédié depuis Nice</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Livraison Lettre Verte</div>
     </div>
 
     <!-- ACCORDIONS -->
     <div class="accordions">
-
       <div class="accordion">
         <div class="accordion-header" onclick="toggleAccordion(this)">
           <span class="accordion-title">Description du produit</span>
           <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
         </div>
         <div class="accordion-body">
-          <p>Plaque en acrylique haute qualité <strong>, épaisseur 1,3 mm, gravée au laser avec votre texte personnalisé. Finition nette et professionnelle, résistante aux UV et à l'humidité.</p>
+          <p>Plaque en acrylique haute qualité gravée au laser avec votre texte personnalisé. Finition nette et professionnelle, résistante aux UV et à l'humidité.</p>
           <ul>
             <li><strong>Matière :</strong> acrylique 1,3 mm</li>
-            <li><strong>Gravure :</strong> laser durable</li>
+            <li><strong>Dimensions au choix :</strong> 100×25 mm, 100×20 mm, 90×25 mm, 90×20 mm</li>
+            <li><strong>Gravure :</strong> laser, profonde et durable</li>
             <li><strong>Adhésif double face 3M</strong> pré-installé au dos</li>
-            <li><strong>Fabriqué en France</strong> — Provence-Alpes-Côte d'Azur</li>
-            <li>Personnalisation texte, couleur et police d'écriture</li>
+            <li><strong>Fabriqué en France</strong> — Nice, Provence-Alpes-Côte d'Azur</li>
           </ul>
         </div>
       </div>
-
       <div class="accordion">
         <div class="accordion-header" onclick="toggleAccordion(this)">
           <span class="accordion-title">Frais de livraison</span>
           <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
         </div>
         <div class="accordion-body">
-          <p>Expédition depuis <strong> France</strong> en Lettre Verte pour les petites commandes.</p>
+          <p>Expédition depuis <strong>Nice, France</strong>. Lettre Verte avec suivi pour les petites commandes.</p>
           <table>
             <thead><tr><th>Quantité</th><th>Mode</th><th>Coût</th></tr></thead>
             <tbody>
-              <tr><td>1 à 19 pièces</td><td>Lettre Verte </td><td>5,99 €</td></tr>
+              <tr><td>1 à 19 pièces</td><td>Lettre Verte suivie</td><td>5,99 €</td></tr>
               <tr><td>20 à 49 pièces</td><td>Colissimo signé</td><td>14,59 €</td></tr>
               <tr><td>50 à 99 pièces</td><td>Colissimo signé</td><td>16,19 €</td></tr>
               <tr><td>≥ 1 000 € HT</td><td>Colissimo signé</td><td>FRANCO</td></tr>
             </tbody>
           </table>
-          <p style="margin-top:0.8rem;">Délai de fabrication et expédition : <strong>2 à 5 jours ouvrés</strong>. France métropolitaine uniquement.</p>
+          <p style="margin-top:0.8rem;">Délai : <strong>2 à 5 jours ouvrés</strong>. France métropolitaine uniquement.</p>
         </div>
       </div>
-
       <div class="accordion">
         <div class="accordion-header" onclick="toggleAccordion(this)">
           <span class="accordion-title">Conditions de retour</span>
           <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
         </div>
         <div class="accordion-body">
-          <p>En raison du caractère <strong>personnalisé</strong> de chaque plaque gravée sur commande, <strong>les retours ne sont pas acceptés</strong> sauf en cas de défaut de fabrication avéré de notre part.</p>
-          <p style="margin-top:0.75rem;">En cas de problème, contactez-nous à <a href="/cdn-cgi/l/email-protection#5038353c3c3f103c3123352224317e3622" style="color:var(--teal-light);"><span class="__cf_email__" data-cfemail="19717c7575765975786a7c6b6d78377f6b">[email&#160;protected]</span></a> avec une photo et nous trouverons une solution adaptée.</p>
-          <p style="margin-top:0.75rem;">Nous vous invitons à vérifier votre texte avec soin avant de valider votre commande — aucune modification ne peut être acceptée une fois la production lancée.</p>
+          <p>En raison du caractère <strong>personnalisé</strong> de chaque plaque gravée sur commande, <strong>les retours ne sont pas acceptés</strong> sauf défaut de fabrication de notre part.</p>
+          <p style="margin-top:0.75rem;">En cas de problème, contactez-nous à <a href="mailto:hello@laserta.fr" style="color:var(--teal-light)">hello@laserta.fr</a> avec une photo et nous trouverons une solution adaptée.</p>
         </div>
       </div>
-
       <div class="accordion">
         <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span class="accordion-title">Comment passer commande ?</span>
-          <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
-        </div>
-        <div class="accordion-body">
-          <p>La commande se fait en 3 étapes simples :</p>
-          <ul>
-            <li><strong>1.</strong> Configurez votre plaque : couleur, police, texte et quantité sur cette page.</li>
-            <li><strong>2.</strong> Cliquez sur "Commander & Payer via Revolut" et réglez le montant total.</li>
-            <li><strong>3.</strong> Dans la note de paiement Revolut, précisez : <em>couleur — police — texte exact à graver — adresse de livraison.</em></li>
-          </ul>
-          <p style="margin-top:0.75rem;">Vous pouvez aussi passer commande par email à <a href="/cdn-cgi/l/email-protection#cca4a9a0a0a38ca0adbfa9beb8ade2aabe" style="color:var(--teal-light);"><span class="__cf_email__" data-cfemail="6d05080101022d010c1e081f190c430b1f">[email&#160;protected]</span></a> si vous préférez et régler par virement bancaire.</p>
-        </div>
-      </div>
-
-      <div class="accordion">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span class="accordion-title">Remises & commandes en volume</span>
+          <span class="accordion-title">Remises &amp; commandes en volume</span>
           <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
         </div>
         <div class="accordion-body">
@@ -452,43 +413,32 @@
               <tr><td>4 pièces et +</td><td>4,79 €</td><td>− 20 %</td></tr>
             </tbody>
           </table>
-          <p style="margin-top:0.8rem;">Pour des commandes de <strong>10 lots et plus</strong> (copropriétés, syndics), contactez-nous pour un devis personnalisé pour profesionnels.</p>
+          <p style="margin-top:0.8rem;">Pour des commandes de <strong>10 lots et plus</strong> (copropriétés, syndics), contactez-nous pour un devis professionnel.</p>
         </div>
       </div>
-
     </div>
   </div>
 </div>
 
 <!-- DESCRIPTION FULL WIDTH -->
 <div class="product-description">
-  <div class="section-label" style="font-size:0.72rem;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:0.8rem;">Pourquoi choisir Laserta</div>
+  <div style="font-size:0.72rem;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:0.8rem;">Pourquoi choisir Laserta</div>
   <div class="desc-grid">
-    <div class="desc-card">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.5"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
-      <h4>Gravure laser de précision</h4>
-      <p>Chaque plaque est gravée au laser avec une précision au dixième de millimètre. Le résultat est net, durable et résistant aux UV et à l'humidité extérieure.</p>
-    </div>
-    <div class="desc-card">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg></div>
-      <h4>Adhésif 3M inclus</h4>
-      <p>Chaque plaque est livrée avec un adhésif double face 3M pré-installé au dos. Pose rapide et sans perçage sur votre boîte aux lettres ou interphone.</p>
-    </div>
-    <div class="desc-card">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg></div>
-      <h4>Made in France</h4>
-      <p>Fabrication artisanale dans notre atelier en Provence-Alpes-Côte d'Azur. Chaque commande est préparée à la main avec soin avant expédition.</p>
-    </div>
+    <div class="desc-card"><div class="dicon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.5"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div><h4>Gravure laser de précision</h4><p>Chaque plaque est gravée au laser avec une précision au dixième de millimètre. Résultat net, durable, résistant aux UV et à l'humidité.</p></div>
+    <div class="desc-card"><div class="dicon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg></div><h4>Adhésif 3M inclus</h4><p>Chaque plaque est livrée avec un adhésif double face 3M pré-installé au dos. Pose rapide et sans perçage sur votre boîte aux lettres.</p></div>
+    <div class="desc-card"><div class="dicon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg></div><h4>Made in France</h4><p>Fabrication artisanale dans notre atelier de Nice, Provence-Alpes-Côte d'Azur. Chaque commande préparée à la main avant expédition.</p></div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <span class="footer-logo">Laserta</span>
-  <span class="footer-text">Signalétique des copropriétés · Made in France · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="68000d0404072804091b0d1a1c09460e1a">[email&#160;protected]</a></span>
+  <span class="footer-text">Signalétique des copropriétés · Made in France · hello@laserta.fr</span>
   <span class="footer-text">© 2026 Laserta — Tous droits réservés</span>
 </footer>
-<!-- MODAL -->
+
+<!-- ══════════════════════════════════
+     MODAL COMMANDE
+══════════════════════════════════ -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
   <div class="modal" id="modal">
     <div class="modal-header">
@@ -496,177 +446,166 @@
       <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     </div>
     <div class="modal-body">
-      <div class="modal-section-title">Récapitulatif de votre commande</div>
+
+      <div class="modal-section-label">Récapitulatif</div>
       <div class="modal-summary" id="modalSummary"></div>
+
       <div class="amount-box">
         <span class="amount-label">Montant à payer</span>
         <span class="amount-value" id="modalAmount">—</span>
       </div>
-      <div class="modal-section-title" style="margin-top:0.25rem;">Vos coordonnées</div>
+
+      <div class="modal-section-label" style="margin-top:0.25rem;">Vos coordonnées</div>
+
       <div class="modal-row">
-        <div class="modal-field"><label class="modal-label" for="clientPrenom">Prénom *</label><input class="modal-input" type="text" id="clientPrenom" placeholder="Jean" required></div>
-        <div class="modal-field"><label class="modal-label" for="clientNom">Nom *</label><input class="modal-input" type="text" id="clientNom" placeholder="Martin" required></div>
+        <div class="modal-field">
+          <label class="modal-label" for="cPrenom">Prénom *</label>
+          <input class="modal-input" type="text" id="cPrenom" placeholder="Jean" required>
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" for="cNom">Nom *</label>
+          <input class="modal-input" type="text" id="cNom" placeholder="Martin" required>
+        </div>
       </div>
-      <div class="modal-field"><label class="modal-label" for="clientEmail">Adresse email *</label><input class="modal-input" type="email" id="clientEmail" placeholder="jean.martin@exemple.fr" required></div>
-      <div class="modal-field"><label class="modal-label" for="clientTel">Téléphone *</label><input class="modal-input" type="tel" id="clientTel" placeholder="+33 6 00 00 00 00" required></div>
-      <div class="modal-field"><label class="modal-label" for="clientAdresse">Adresse postale complète *</label><input class="modal-input" type="text" id="clientAdresse" placeholder="12 rue des Lilas, 75001 Paris" required></div>
-      <button class="btn-pay" onclick="submitOrder()" style="margin-top:0.5rem;">
+      <div class="modal-field">
+        <label class="modal-label" for="cEmail">Email *</label>
+        <input class="modal-input" type="email" id="cEmail" placeholder="jean.martin@exemple.fr" required>
+      </div>
+      <div class="modal-field">
+        <label class="modal-label" for="cTel">Téléphone *</label>
+        <input class="modal-input" type="tel" id="cTel" placeholder="+33 6 00 00 00 00" required>
+      </div>
+      <div class="modal-field">
+        <label class="modal-label" for="cAdresse">Adresse postale complète *</label>
+        <input class="modal-input" type="text" id="cAdresse" placeholder="12 rue des Lilas, 75001 Paris" required>
+      </div>
+
+      <div class="modal-sending" id="modalSending">Envoi de votre commande en cours…</div>
+
+      <button class="btn-pay" id="btnPayer" onclick="submitOrder()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-        Payer &mdash; Confirmer &amp; Régler via Revolut
+        Payer via Revolut
       </button>
-      <p style="font-size:0.75rem;font-weight:300;color:var(--gray);text-align:center;">En cliquant sur "Payer", vos informations nous sont transmises par email et vous serez redirigé vers Revolut.</p>
+
+      <p style="font-size:0.75rem;font-weight:300;color:var(--gray);text-align:center;">
+        Vos informations sont transmises de façon sécurisée puis vous serez redirigé vers Revolut pour le règlement.
+      </p>
     </div>
   </div>
 </div>
 
-
 <script>
-var photos=['https://i.ebayimg.com/images/g/a0MAAeSwmxlpovhA/s-l1600.png','https://i.ebayimg.com/images/g/9DQAAeSwjH5pojBE/s-l1600.png','https://i.ebayimg.com/images/g/RrMAAeSwTKRpovhn/s-l1600.png','https://i.ebayimg.com/images/g/BHAAAeSwREFpojBR/s-l1600.png'];
-function setPhoto(idx,el){document.getElementById('mainPhoto').src=photos[idx];document.querySelectorAll('.gallery-thumb').forEach(function(t){t.classList.remove('active')});el.classList.add('active');}
-var couleurMap={acier:{label:'Acier brossé',bg:'linear-gradient(135deg,#c4c4c0,#e8e8e4,#a8a8a4)',color:'#2a2a28',border:'#b0b0ac'},or:{label:'Or brossé',bg:'linear-gradient(135deg,#c0982c,#e0c060,#a07820)',color:'#3a2a08',border:'#c0a030'},noir:{label:'Noir mat',bg:'#141414',color:'#e8e8e0',border:'#2a2a28'},blanc:{label:'Blanc mat',bg:'#f2f2ee',color:'#1c1c1a',border:'#d8d8d0'}};
-var policeMap={arial:{label:'Arial',font:'Arial,sans-serif',style:'normal'},'arial-it':{label:'Arial italique',font:'Arial,sans-serif',style:'italic'},'arial-r':{label:'Arial arrondi',font:'Arial Rounded MT Bold,Arial,sans-serif',style:'normal'},times:{label:'Times New Roman',font:"'Times New Roman',serif",style:'normal'}};
+/* ─── DONNÉES ─── */
+var photos = [
+  'https://i.ebayimg.com/images/g/a0MAAeSwmxlpovhA/s-l1600.png',
+  'https://i.ebayimg.com/images/g/9DQAAeSwjH5pojBE/s-l1600.png',
+  'https://i.ebayimg.com/images/g/RrMAAeSwTKRpovhn/s-l1600.png',
+  'https://i.ebayimg.com/images/g/BHAAAeSwREFpojBR/s-l1600.png'
+];
 
-function buildTextFields(qty){
-  var container=document.getElementById('textesContainer');
-  var existing=Array.from(container.querySelectorAll('.texte-field')).map(function(i){return i.value;});
-  container.innerHTML='';
-  for(var i=0;i<qty;i++){
-    var wrap=document.createElement('div');
-    wrap.className='texte-field-wrap';
-    if(qty>1){var num=document.createElement('span');num.className='texte-field-num';num.textContent='Plaque '+(i+1);wrap.appendChild(num);}
-    var inp=document.createElement('input');
-    inp.type='text';inp.className='config-input texte-field';inp.maxLength=30;
-    inp.placeholder=qty>1?'Ex : Famille Martin (plaque '+(i+1)+')':'Ex : Famille Martin';
-    inp.value=existing[i]||'';
-    inp.addEventListener('input',updatePreview);
+var couleurMap = {
+  acier: { label:'Acier brossé', bg:'linear-gradient(135deg,#c4c4c0,#e8e8e4,#a8a8a4)', color:'#2a2a28', border:'#b0b0ac' },
+  or:    { label:'Or brossé',    bg:'linear-gradient(135deg,#c0982c,#e0c060,#a07820)', color:'#3a2a08', border:'#c0a030' },
+  noir:  { label:'Noir mat',     bg:'#141414', color:'#e8e8e0', border:'#2a2a28' },
+  blanc: { label:'Blanc mat',    bg:'#f2f2ee', color:'#1c1c1a', border:'#d8d8d0' }
+};
+
+var policeMap = {
+  arial:     { label:'Arial',          font:'Arial,sans-serif',                        style:'normal' },
+  'arial-it':{ label:'Arial italique', font:'Arial,sans-serif',                        style:'italic' },
+  'arial-r': { label:'Arial arrondi',  font:'Arial Rounded MT Bold,Arial,sans-serif',  style:'normal' },
+  times:     { label:'Times New Roman',font:"'Times New Roman',serif",                 style:'normal' }
+};
+
+var dimensionsMap = {
+  '100x25': { label:'100 × 25 mm', ref:'R101', cssClass:'dim-100x25' },
+  '100x20': { label:'100 × 20 mm', ref:'R102', cssClass:'dim-100x20' },
+  '90x25':  { label:'90 × 25 mm',  ref:'R103', cssClass:'dim-90x25'  },
+  '90x20':  { label:'90 × 20 mm',  ref:'R104', cssClass:'dim-90x20'  }
+};
+
+/* Prix selon QTE (tarif de base, matière acier) */
+var priceTiers = [
+  {min:1,max:1,price:5.99},
+  {min:2,max:2,price:5.39},
+  {min:3,max:3,price:5.09},
+  {min:4,max:Infinity,price:4.79}
+];
+
+/* Lien Revolut selon QTE */
+var revolutLinks = {
+  1: 'https://revolut.me/lasertafr?currency=EUR&amount=599&note=Montant%20%C3%A0%20payer%20pour%20finaliser%20votre%20commande',
+  2: 'https://revolut.me/lasertafr?currency=EUR&amount=539&note=Montant%20%C3%A0%20payer%20pour%20finaliser%20votre%20commande',
+  3: 'https://revolut.me/lasertafr?currency=EUR&amount=509&note=Montant%20%C3%A0%20payer%20pour%20finaliser%20votre%20commande',
+  4: 'https://revolut.me/lasertafr?currency=EUR&amount=479&note=Montant%20%C3%A0%20payer%20pour%20finaliser%20votre%20commande'
+};
+
+/* ─── WEB3FORMS ACCESS KEY ───
+   Créer un compte gratuit sur https://web3forms.com avec hello@laserta.fr
+   et remplacer la valeur ci-dessous par votre clé API personnelle */
+var WEB3FORMS_KEY = '027da878-d731-42c6-b4d7-f981a434fee8';
+
+/* ─── GALLERY ─── */
+function setPhoto(idx, el) {
+  document.getElementById('mainPhoto').src = photos[idx];
+  document.querySelectorAll('.gallery-thumb').forEach(function(t){ t.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+/* ─── CHAMPS TEXTE DYNAMIQUES ─── */
+function buildTextFields(qty) {
+  var container = document.getElementById('textesContainer');
+  var existing = Array.from(container.querySelectorAll('.texte-field')).map(function(i){ return i.value; });
+  container.innerHTML = '';
+  for (var i = 0; i < qty; i++) {
+    var wrap = document.createElement('div');
+    wrap.className = 'texte-field-wrap';
+    if (qty > 1) {
+      var num = document.createElement('span');
+      num.className = 'texte-field-num';
+      num.textContent = 'Plaque ' + (i + 1);
+      wrap.appendChild(num);
+    }
+    var inp = document.createElement('input');
+    inp.type = 'text'; inp.className = 'config-input texte-field'; inp.maxLength = 30;
+    inp.placeholder = qty > 1 ? 'Ex : Famille Martin (plaque ' + (i+1) + ')' : 'Ex : Famille Martin';
+    inp.value = existing[i] || '';
+    inp.addEventListener('input', updatePreview);
     wrap.appendChild(inp);
     container.appendChild(wrap);
   }
   updatePreview();
 }
 
-function updatePreview(){
-  var couleur=document.getElementById('couleur').value;
-  var police=document.getElementById('police').value;
-  var firstField=document.querySelector('.texte-field');
-  var texte=firstField?firstField.value.trim():'';
-  var plate=document.getElementById('previewPlate');
-  var pt=document.getElementById('previewText');
-  if(couleur&&couleurMap[couleur]){var c=couleurMap[couleur];plate.style.background=c.bg;plate.style.borderColor=c.border;plate.style.boxShadow='0 2px 12px rgba(0,0,0,0.4)';}
-  else{plate.style.background='var(--dark-3)';plate.style.borderColor='rgba(255,255,255,0.08)';plate.style.boxShadow='none';}
-  if(police&&policeMap[police]){pt.style.fontFamily=policeMap[police].font;pt.style.fontStyle=policeMap[police].style;}
-  if(texte&&couleur){pt.textContent=texte;pt.style.color=couleurMap[couleur].color;pt.style.fontSize='14px';pt.style.fontStyle=police?policeMap[police].style:'normal';pt.style.fontFamily=police?policeMap[police].font:'DM Sans,sans-serif';}
-  else if(!texte&&couleur){pt.textContent='Votre texte ici';pt.style.color=couleurMap[couleur].color+'80';pt.style.fontStyle='italic';pt.style.fontSize='13px';}
-  else{pt.textContent="Sélectionnez vos options pour voir l'aperçu";pt.style.color='#888780';pt.style.fontStyle='italic';pt.style.fontSize='11px';}
-  updatePrice();
-}
+/* ─── APERÇU MULTI-PLAQUES ─── */
+function updatePreview() {
+  var couleur = document.getElementById('couleur').value;
+  var police  = document.getElementById('police').value;
+  var dim     = document.getElementById('dimensions').value || '100x20';
+  var qty     = parseInt(document.getElementById('qtyInput').value) || 1;
+  var fields  = Array.from(document.querySelectorAll('.texte-field'));
+  var stack   = document.getElementById('previewsStack');
+  stack.innerHTML = '';
 
-var priceTiers=[{min:1,max:1,price:5.99},{min:2,max:2,price:5.39},{min:3,max:3,price:5.09},{min:4,max:Infinity,price:4.79}];
-function getUnitPrice(qty){for(var i=0;i<priceTiers.length;i++){if(qty>=priceTiers[i].min&&qty<=priceTiers[i].max)return priceTiers[i].price;}return 4.79;}
-function updatePrice(){var qty=parseInt(document.getElementById('qtyInput').value)||1;var unit=getUnitPrice(qty);var total=(qty*unit).toFixed(2).replace('.',',');document.getElementById('priceDisplay').textContent=unit.toFixed(2).replace('.',',')+'\u00a0€';document.getElementById('totalDisplay').textContent='Total\u00a0: '+total+'\u00a0€';}
-function changeQty(delta){var input=document.getElementById('qtyInput');var val=Math.max(1,Math.min(100,(parseInt(input.value)||1)+delta));input.value=val;onQtyChange();}
-function onQtyChange(){var qty=Math.max(1,parseInt(document.getElementById('qtyInput').value)||1);buildTextFields(qty);updatePrice();}
+  var showNum = qty > 1;
 
-function getTextes(){return Array.from(document.querySelectorAll('.texte-field')).map(function(f,i){return{num:i+1,val:f.value.trim()};});}
+  for (var i = 0; i < qty; i++) {
+    var texte = fields[i] ? fields[i].value.trim() : '';
+    var row = document.createElement('div');
+    row.className = 'preview-row';
 
-function openModal(){
-  var couleur=document.getElementById('couleur').value;
-  var police=document.getElementById('police').value;
-  var textes=getTextes();
-  var qty=parseInt(document.getElementById('qtyInput').value)||1;
-  if(!couleur){alert('Veuillez sélectionner une couleur / matière.');return;}
-  if(!police){alert("Veuillez sélectionner une police d'écriture.");return;}
-  var missing=null;for(var i=0;i<textes.length;i++){if(!textes[i].val){missing=textes[i];break;}}
-  if(missing){alert('Veuillez renseigner le texte pour la plaque '+missing.num+'.');return;}
-  var unit=getUnitPrice(qty);var total=(qty*unit).toFixed(2);
-  var textLines=textes.map(function(t){return '<div class="mrow"><span>Texte plaque '+t.num+'</span><span style="color:var(--off-white);font-weight:400">'+t.val+'</span></div>';}).join('');
-  document.getElementById('modalSummary').innerHTML='<div class="mrow"><span>Produit</span><span>Plaque boîte aux lettres 10×2 cm</span></div><div class="mrow"><span>Couleur</span><span>'+couleurMap[couleur].label+'</span></div><div class="mrow"><span>Police</span><span>'+policeMap[police].label+'</span></div>'+textLines+'<div class="mrow"><span>Quantité</span><span>'+qty+' pièce'+(qty>1?'s':'')+'</span></div><div class="mrow total"><span class="mlbl">Total HT</span><span class="mval">'+total.replace('.',',')+' €</span></div>';
-  document.getElementById('modalAmount').textContent=total.replace('.',',')+' €';
-  document.getElementById('modalOverlay').classList.add('visible');
-  document.body.style.overflow='hidden';
-}
+    if (showNum) {
+      var numEl = document.createElement('span');
+      numEl.className = 'preview-row-num';
+      numEl.textContent = 'Plaque ' + (i+1);
+      row.appendChild(numEl);
+    }
 
-function closeModal(){document.getElementById('modalOverlay').classList.remove('visible');document.body.style.overflow='';}
-function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
-
-function submitOrder(){
-  var prenom=document.getElementById('clientPrenom').value.trim();
-  var nom=document.getElementById('clientNom').value.trim();
-  var email=document.getElementById('clientEmail').value.trim();
-  var tel=document.getElementById('clientTel').value.trim();
-  var adresse=document.getElementById('clientAdresse').value.trim();
-  if(!prenom||!nom||!email||!tel||!adresse){alert('Merci de renseigner tous les champs obligatoires (*).');return;}
-  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if(!emailRe.test(email)){alert('Veuillez entrer une adresse email valide.');return;}
-  var couleur=document.getElementById('couleur').value;
-  var police=document.getElementById('police').value;
-  var qty=parseInt(document.getElementById('qtyInput').value)||1;
-  var textes=getTextes();
-  var unit=getUnitPrice(qty);
-  var total=(qty*unit).toFixed(2);
-  var textesLines=textes.map(function(t){return'Plaque '+t.num+' : '+t.val;}).join('\n');
-  var subj=encodeURIComponent('[COMMANDE] Laserta — '+prenom+' '+nom+' — '+qty+' plaque'+(qty>1?'s':'')+' — '+total+' EUR');
-  var body=encodeURIComponent(
-    '╋╋╋╋ NOUVELLE COMMANDE — Laserta ╋╋╋╋\n\n'+
-    'CLIENT\nPrénom : '+prenom+'\nNom : '+nom+'\nEmail : '+email+'\nTéléphone : '+tel+'\nAdresse : '+adresse+
-    '\n\nCOMMANDE\nProduit : Plaque boîte aux lettres 10x2 cm (réf. R102)\nCouleur : '+couleurMap[couleur].label+'\nPolice : '+policeMap[police].label+'\nQuantité : '+qty+' pièce'+(qty>1?'s':'')+
-    '\n'+textesLines+
-    '\n\nMONTANT\nPrix unitaire : '+unit.toFixed(2).replace('.',',')+' EUR HT\nTotal à régler : '+total.replace('.',',')+' EUR HT'+
-    '\n\nPaiement via Revolut : revolut.me/lasertafr'
-  );
-  window.location.href='mailto:hello@laserta.fr?subject='+subj+'&body='+body;
-  closeModal();
-  var banner=document.getElementById('confirmBanner');
-  banner.classList.add('visible');
-  banner.scrollIntoView({behavior:'smooth',block:'center'});
-  setTimeout(function(){window.open('https://revolut.me/lasertafr','_blank');},2500);
-}
-
-function toggleAccordion(header){var body=header.nextElementSibling;var icon=header.querySelector('.accordion-icon');var isOpen=body.classList.contains('open');body.classList.toggle('open',!isOpen);icon.classList.toggle('open',!isOpen);}
-
-buildTextFields(1);
-updatePrice();
-</script><script>
-  const photos = [
-    'https://i.ebayimg.com/images/g/a0MAAeSwmxlpovhA/s-l1600.png',
-    'https://i.ebayimg.com/images/g/9DQAAeSwjH5pojBE/s-l1600.png',
-    'https://i.ebayimg.com/images/g/RrMAAeSwTKRpovhn/s-l1600.png',
-    'https://i.ebayimg.com/images/g/BHAAAeSwREFpojBR/s-l1600.png'
-  ];
-
-  function setPhoto(idx, el) {
-    document.getElementById('mainPhoto').src = photos[idx];
-    document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-  }
-
-  const couleurMap = {
-    acier: { bg: 'linear-gradient(135deg, #c4c4c0, #e8e8e4, #a8a8a4)', color: '#2a2a28', border: '#b0b0ac' },
-    or:    { bg: 'linear-gradient(135deg, #c0982c, #e0c060, #a07820)', color: '#3a2a08', border: '#c0a030' },
-    noir:  { bg: '#141414', color: '#e8e8e0', border: '#2a2a28' },
-    blanc: { bg: '#f2f2ee', color: '#1c1c1a', border: '#d8d8d0' }
-  };
-
-  const policeMap = {
-    arial:    'Arial, sans-serif',
-    'arial-it': 'Arial, sans-serif',
-    'arial-r':'Arial Rounded MT Bold, Arial, sans-serif',
-    times:   "'Times New Roman', serif"
-  };
-
-  const policeStyleMap = {
-    'arial-it': 'italic',
-  };
-
-  function updatePreview() {
-    const couleur = document.getElementById('couleur').value;
-    const police = document.getElementById('police').value;
-    const texte = document.getElementById('texte').value.trim();
-    const plate = document.getElementById('previewPlate');
-    const previewText = document.getElementById('previewText');
+    var plate = document.createElement('div');
+    plate.className = 'preview-plate ' + (dimensionsMap[dim] ? dimensionsMap[dim].cssClass : 'dim-100x20');
 
     if (couleur && couleurMap[couleur]) {
-      const c = couleurMap[couleur];
+      var c = couleurMap[couleur];
       plate.style.background = c.bg;
       plate.style.borderColor = c.border;
       plate.style.boxShadow = '0 2px 12px rgba(0,0,0,0.4)';
@@ -676,54 +615,189 @@ updatePrice();
       plate.style.boxShadow = 'none';
     }
 
-    if (police && policeMap[police]) {
-      previewText.style.fontFamily = policeMap[police];
-      previewText.style.fontStyle = policeStyleMap[police] || 'normal';
-    }
+    var pt = document.createElement('span');
+    pt.className = 'preview-text';
 
     if (texte && couleur) {
-      previewText.textContent = texte;
-      previewText.style.color = couleurMap[couleur] ? couleurMap[couleur].color : 'var(--off-white)';
-      previewText.style.fontStyle = policeStyleMap[police] || 'normal';
-      previewText.style.fontFamily = policeMap[police] || 'DM Sans, sans-serif';
-      previewText.style.fontSize = '14px';
+      pt.textContent = texte;
+      pt.style.color = couleurMap[couleur].color;
+      pt.style.fontSize = '13px';
+      pt.style.fontStyle = police && policeMap[police] ? policeMap[police].style : 'normal';
+      pt.style.fontFamily = police && policeMap[police] ? policeMap[police].font : 'DM Sans,sans-serif';
     } else if (!texte && couleur) {
-      previewText.textContent = 'Votre texte ici';
-      previewText.style.color = couleurMap[couleur] ? couleurMap[couleur].color + '80' : 'var(--gray)';
-      previewText.style.fontStyle = 'italic';
-      previewText.style.fontSize = '13px';
+      pt.textContent = 'Votre texte ici';
+      pt.style.color = couleurMap[couleur].color + '70';
+      pt.style.fontStyle = 'italic';
+      pt.style.fontSize = '12px';
     } else {
-      previewText.textContent = 'Sélectionnez vos options pour voir l\'aperçu';
-      previewText.style.color = '#888780';
-      previewText.style.fontStyle = 'italic';
-      previewText.style.fontSize = '11px';
+      pt.textContent = i === 0 ? "Sélectionnez vos options" : 'Plaque ' + (i+1);
+      pt.style.color = '#888780';
+      pt.style.fontStyle = 'italic';
+      pt.style.fontSize = '11px';
     }
 
-    updatePrice();
+    plate.appendChild(pt);
+    row.appendChild(plate);
+    stack.appendChild(row);
   }
 
-  const priceTiers = [
-    { min: 1, max: 1, price: 5.99 },
-    { min: 2, max: 2, price: 5.39 },
-    { min: 3, max: 3, price: 5.09 },
-    { min: 4, max: Infinity, price: 4.79 }
-  ];
+  updatePrice();
+}
 
-  function getUnitPrice(qty) {
-    for (const t of priceTiers) {
-      if (qty >= t.min && qty <= t.max) return t.price;
-    }
-    return 4.79;
+/* ─── PRIX ─── */
+function getUnitPrice(qty) {
+  for (var i = 0; i < priceTiers.length; i++) {
+    if (qty >= priceTiers[i].min && qty <= priceTiers[i].max) return priceTiers[i].price;
   }
+  return 4.79;
+}
 
-  function updatePrice() {
-    const qty = parseInt(document.getElementById('qtyInput').value) || 1;
-    const unit = getUnitPrice(qty);
-    const total = (qty * unit).toFixed(2).replace('.', ',');
-    document.getElementById('priceDisplay').textContent = unit.toFixed(2).replace('.', ',') + ' €';
-    document.getElementById('totalDisplay').textContent = 'Total : ' + total + ' €';
+function updatePrice() {
+  var qty  = parseInt(document.getElementById('qtyInput').value) || 1;
+  var unit = getUnitPrice(qty);
+  var total = (qty * unit).toFixed(2).replace('.', ',');
+  document.getElementById('priceDisplay').textContent = unit.toFixed(2).replace('.', ',') + ' €';
+  document.getElementById('totalDisplay').textContent = 'Total : ' + total + ' €';
+}
+
+function changeQty(delta) {
+  var input = document.getElementById('qtyInput');
+  var val = Math.max(1, Math.min(100, (parseInt(input.value) || 1) + delta));
+  input.value = val;
+  onQtyChange();
+}
+
+function onQtyChange() {
+  var qty = Math.max(1, parseInt(document.getElementById('qtyInput').value) || 1);
+  buildTextFields(qty);
+  updatePreview();
+}
+
+/* ─── MODAL ─── */
+function getTextes() {
+  return Array.from(document.querySelectorAll('.texte-field')).map(function(f, i){ return {num:i+1, val:f.value.trim()}; });
+}
+
+function openModal() {
+  var couleur = document.getElementById('couleur').value;
+  var police  = document.getElementById('police').value;
+  var dim     = document.getElementById('dimensions').value;
+  var textes  = getTextes();
+  var qty     = parseInt(document.getElementById('qtyInput').value) || 1;
+
+  if (!dim)    { alert('Veuillez sélectionner les dimensions souhaitées.'); return; }
+  if (!couleur){ alert('Veuillez sélectionner une couleur / matière.'); return; }
+  if (!police) { alert("Veuillez sélectionner une police d'écriture."); return; }
+  var missing = null;
+  for (var i = 0; i < textes.length; i++) { if (!textes[i].val) { missing = textes[i]; break; } }
+  if (missing) { alert('Veuillez renseigner le texte pour la plaque ' + missing.num + '.'); return; }
+
+  var unit  = getUnitPrice(qty);
+  var total = (qty * unit).toFixed(2);
+
+  var textLines = textes.map(function(t){
+    return '<div class="mrow"><span>' + (qty > 1 ? 'Texte plaque ' + t.num : 'Texte à graver') + '</span><span class="mval">' + t.val + '</span></div>';
+  }).join('');
+
+  document.getElementById('modalSummary').innerHTML =
+    '<div class="mrow"><span>Produit</span><span class="mval">Plaque boîte aux lettres</span></div>' +
+    '<div class="mrow"><span>Dimensions</span><span class="mval">' + dimensionsMap[dim].label + ' (' + dimensionsMap[dim].ref + ')</span></div>' +
+    '<div class="mrow"><span>Couleur</span><span class="mval">' + couleurMap[couleur].label + '</span></div>' +
+    '<div class="mrow"><span>Police</span><span class="mval">' + policeMap[police].label + '</span></div>' +
+    textLines +
+    '<div class="mrow"><span>Quantité</span><span class="mval">' + qty + ' pièce' + (qty > 1 ? 's' : '') + '</span></div>' +
+    '<div class="mrow mtotal"><span class="mlbl">Total HT</span><span class="mval">' + total.replace('.', ',') + ' €</span></div>';
+
+  document.getElementById('modalAmount').textContent = total.replace('.', ',') + ' €';
+  document.getElementById('modalOverlay').classList.add('visible');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('cPrenom').focus();
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('visible');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+/* ─── SOUMISSION COMMANDE ─── */
+function submitOrder() {
+  var prenom  = document.getElementById('cPrenom').value.trim();
+  var nom     = document.getElementById('cNom').value.trim();
+  var email   = document.getElementById('cEmail').value.trim();
+  var tel     = document.getElementById('cTel').value.trim();
+  var adresse = document.getElementById('cAdresse').value.trim();
+
+  if (!prenom || !nom || !email || !tel || !adresse) {
+    alert('Merci de renseigner tous les champs obligatoires (*).');
+    return;
   }
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRe.test(email)) { alert('Veuillez entrer une adresse email valide.'); return; }
 
-  function changeQty(delta) {
-    const input = document.getElementById('qtyInput');
-   
+  var couleur = document.getElementById('couleur').value;
+  var police  = document.getElementById('police').value;
+  var dim     = document.getElementById('dimensions').value;
+  var qty     = parseInt(document.getElementById('qtyInput').value) || 1;
+  var textes  = getTextes();
+  var unit    = getUnitPrice(qty);
+  var total   = (qty * unit).toFixed(2);
+  var textesStr = textes.map(function(t){ return 'Plaque ' + t.num + ' : ' + t.val; }).join(' | ');
+
+  /* Désactiver le bouton + afficher message envoi */
+  document.getElementById('btnPayer').disabled = true;
+  document.getElementById('btnPayer').textContent = 'Envoi en cours…';
+  document.getElementById('modalSending').classList.add('visible');
+
+  /* ── ENVOI SILENCIEUX via Web3Forms ── */
+  var formData = new FormData();
+  formData.append('access_key', WEB3FORMS_KEY);
+  formData.append('subject',  '[COMMANDE LASERTA] ' + prenom + ' ' + nom + ' — ' + qty + ' plaque' + (qty>1?'s':'') + ' — ' + total + ' EUR');
+  formData.append('from_name', 'Laserta Shop');
+  formData.append('Prénom',    prenom);
+  formData.append('Nom',       nom);
+  formData.append('Email client', email);
+  formData.append('Téléphone', tel);
+  formData.append('Adresse',   adresse);
+  formData.append('Produit',   'Plaque boîte aux lettres');
+  formData.append('Dimensions', dimensionsMap[dim] ? dimensionsMap[dim].label + ' (' + dimensionsMap[dim].ref + ')' : dim);
+  formData.append('Couleur',   couleurMap[couleur] ? couleurMap[couleur].label : couleur);
+  formData.append('Police',    policeMap[police]   ? policeMap[police].label   : police);
+  formData.append('Quantité',  qty + ' pièce' + (qty>1?'s':''));
+  formData.append('Textes à graver', textesStr);
+  formData.append('Prix unitaire HT', unit.toFixed(2).replace('.',',') + ' EUR');
+  formData.append('Total HT',  total.replace('.',',') + ' EUR');
+  formData.append('Lien Revolut', revolutLinks[Math.min(qty, 4)]);
+
+  fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
+    .then(function(r){ return r.json(); })
+    .catch(function(){ return {success: false}; })
+    .finally(function() {
+      /* Que l'envoi réussisse ou non, on redirige vers Revolut */
+      var revolutUrl = revolutLinks[Math.min(qty, 4)];
+      closeModal();
+      var banner = document.getElementById('confirmBanner');
+      banner.classList.add('visible');
+      banner.scrollIntoView({behavior:'smooth', block:'center'});
+      window.location.href = revolutUrl;
+    });
+}
+
+/* ─── ACCORDIONS ─── */
+function toggleAccordion(header) {
+  var body = header.nextElementSibling;
+  var icon = header.querySelector('.accordion-icon');
+  var isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  icon.classList.toggle('open', !isOpen);
+}
+
+/* ─── INIT ─── */
+buildTextFields(1);
+updatePreview();
+</script>
+</body>
+</html>
