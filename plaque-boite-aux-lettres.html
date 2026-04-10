@@ -152,6 +152,44 @@
     .desc-grid { grid-template-columns: 1fr; }
     .trust-badges { grid-template-columns: 1fr; }
   }
+
+  /* MULTI-TEXT FIELDS */
+  .textes-container { display: flex; flex-direction: column; gap: 0.75rem; }
+  .texte-field-wrap { display: flex; flex-direction: column; gap: 0.3rem; }
+  .texte-field-num { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal); }
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 300; align-items: center; justify-content: center; padding: 1rem; }
+  .modal-overlay.visible { display: flex; }
+  .modal { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.09); border-radius: 4px; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; animation: modalIn 0.25s ease; }
+  @keyframes modalIn { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
+  .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 1.75rem 0; margin-bottom: 1.25rem; }
+  .modal-title { font-family: 'DM Serif Display', serif; font-size: 1.4rem; font-weight: 400; color: var(--white); }
+  .modal-close { background: none; border: none; color: var(--gray); cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; transition: color 0.2s; }
+  .modal-close:hover { color: var(--off-white); }
+  .modal-close svg { width: 20px; height: 20px; }
+  .modal-body { padding: 0 1.75rem 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
+  .modal-section-title { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); padding-bottom: 0.5rem; border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+  .modal-field { display: flex; flex-direction: column; gap: 0.35rem; }
+  .modal-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray); }
+  .modal-input { background: var(--dark-3); border: 0.5px solid rgba(255,255,255,0.1); border-radius: 1px; padding: 0.75rem 1rem; color: var(--off-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; outline: none; transition: border-color 0.2s; width: 100%; }
+  .modal-input:focus { border-color: var(--teal); }
+  .modal-input::placeholder { color: var(--gray); }
+  .modal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .modal-summary { background: var(--dark-3); border: 0.5px solid rgba(255,255,255,0.06); border-radius: 2px; padding: 1rem 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .mrow { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 300; color: var(--gray-light); }
+  .mrow.total { border-top: 0.5px solid rgba(255,255,255,0.08); padding-top: 0.6rem; margin-top: 0.2rem; }
+  .mrow.total .mlbl { font-weight: 400; color: var(--off-white); font-size: 0.9rem; }
+  .mrow.total .mval { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--teal-light); }
+  .amount-box { background: rgba(29,158,117,0.08); border: 0.5px solid rgba(29,158,117,0.3); border-radius: 2px; padding: 1rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .amount-label { font-size: 0.9rem; font-weight: 400; color: var(--teal-light); }
+  .amount-value { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--white); white-space: nowrap; }
+  .confirm-banner { display: none; background: rgba(29,158,117,0.1); border: 0.5px solid rgba(29,158,117,0.35); border-radius: 2px; padding: 1.2rem 1.5rem; margin-top: 0.75rem; gap: 0.75rem; align-items: flex-start; }
+  .confirm-banner.visible { display: flex; }
+  .confirm-icon { flex-shrink: 0; color: var(--teal-light); margin-top: 2px; }
+  .confirm-icon svg { width: 20px; height: 20px; }
+  .confirm-text strong { color: var(--teal-light); font-weight: 400; display: block; margin-bottom: 0.25rem; font-size: 0.9rem; }
+  .confirm-text p { font-size: 0.82rem; font-weight: 300; color: var(--gray-light); line-height: 1.6; }
+  @media (max-width: 600px) { .modal-row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -203,7 +241,7 @@
   <!-- PRODUCT INFO -->
   <div class="product-info">
     <div class="product-label">Laserta · Signalétique des copropriétés</div>
-    <h1 class="product-title">Plaque Boîte aux Lettres Personnalisée — 10 × 2 cm · Acrylique</h1>
+    <h1 class="product-title">Plaque Boîte aux Lettres Personnalisée — Acrylique</h1>
 
     <div class="product-rating">
       <div class="stars">
@@ -224,12 +262,24 @@
         <div class="price-tier"><span class="price-tier-qty">3 pièces</span><span class="price-tier-val">5,09 € / pièce</span></div>
         <div class="price-tier best"><span class="price-tier-qty">4 pièces et +</span><span class="price-tier-val">4,79 € / pièce ✦ meilleur tarif</span></div>
       </div>
-      <p class="price-ht-note">TVA non applicable — article 293 B du CGI · Depuis Nice, France</p>
+      <p class="price-ht-note">TVA non applicable — article 293 B du CGI · Depuis France</p>
     </div>
 
     <!-- CONFIGURATOR -->
     <div class="configurator">
+     
+    <div class="config-group">
+        <label class="config-label" for="couleur">Dimensions</label>
+        <select class="config-select" id="couleur" onchange="updatePreview()">
+          <option value="">— Sélectionner —</option>
+          <option value="acier">100x25 mm</option>
+          <option value="or">100x20 mm</option>
+          <option value="noir">90x25 mm</option>
+          <option value="blanc">90x20 mm</option>
+        </select>
+      </div>
 
+     
       <div class="config-group">
         <label class="config-label" for="couleur">Couleur / Matière</label>
         <select class="config-select" id="couleur" onchange="updatePreview()">
@@ -252,17 +302,17 @@
         </select>
       </div>
 
-      <div class="config-group">
-        <label class="config-label" for="texte">Votre texte à graver</label>
-        <input class="config-input" type="text" id="texte" maxlength="30" placeholder="Ex : Famille Martin" oninput="updatePreview()">
-        <span class="config-hint">30 caractères maximum · Majuscules, minuscules, espaces et accents acceptés</span>
+            <div class="config-group" id="textesGroup">
+        <label class="config-label">Texte(s) à graver</label>
+        <div class="textes-container" id="textesContainer"></div>
+        <span class="config-hint">30 caractères max par plaque · Majuscules, minuscules, espaces et accents acceptés</span>
       </div>
 
     </div>
 
     <!-- LIVE PREVIEW -->
     <div class="preview-block">
-      <div class="preview-label">Aperçu en temps réel</div>
+      <div class="preview-label">Aperçu en temps réel — Plaque 1</div>
       <div class="preview-plate" id="previewPlate">
         <span class="preview-text" id="previewText" style="color:#888780;font-style:italic;font-size:11px;">Sélectionnez vos options pour voir l'aperçu</span>
       </div>
@@ -274,22 +324,29 @@
         <span class="qty-label">Quantité</span>
         <div class="qty-ctrl">
           <button class="qty-btn" onclick="changeQty(-1)">−</button>
-          <input class="qty-val" type="number" id="qtyInput" value="1" min="1" max="100" oninput="updatePrice()">
+          <input class="qty-val" type="number" id="qtyInput" value="1" min="1" max="100" oninput="onQtyChange()">
           <button class="qty-btn" onclick="changeQty(1)">+</button>
         </div>
         <span class="qty-total" id="totalDisplay">Total : 5,99 €</span>
       </div>
 
-      <a href="https://revolut.me/lasertafr" target="_blank" class="btn-pay" id="payBtn" onclick="return validateAndPay()">
+      <button class="btn-pay" onclick="openModal()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-        Commander & Payer via Revolut
-      </a>
+        Commander &amp; Payer
+      </button>
 
-      <a href="mailto:hello@laserta.fr?subject=Commande plaque boîte aux lettres&body=Bonjour,%0D%0A%0D%0AJe souhaite commander une plaque boîte aux lettres.%0D%0A%0D%0ATexte à graver :%0D%0ACouleur :%0D%0APolice :%0D%0AQuantité :%0D%0A%0D%0AMerci" class="btn-contact">
+      <a href="/cdn-cgi/l/email-protection#5e363b3232311e323f2d3b2c2a3f70382c612d2b3c343b3d2a631d3133333f303a3b7e2e323f2f2b3b7e3c319df02a3b7e3f2b267e323b2a2a2c3b2d783c313a27631c313034312b2c727b6e1a7b6e1f7b6e1a7b6e1f143b7e2d312b363f372a3b7e3d3133333f303a3b2c7e2b303b7e2e323f2f2b3b7e3c319df02a3b7e3f2b267e323b2a2a2c3b2d707b6e1a7b6e1f7b6e1a7b6e1f0a3b262a3b7e9dfe7e392c3f283b2c7e647b6e1a7b6e1f1d312b323b2b2c7e647b6e1a7b6e1f0e3132373d3b7e647b6e1a7b6e1f0f2b3f302a372a9df77e647b6e1a7b6e1f7b6e1a7b6e1f133b2c3d37" class="btn-contact">
         Préférer commander par email
       </a>
 
-      <p class="pay-note">Paiement sécurisé via <strong>Revolut</strong> · Indiquez vos choix (couleur, police, texte) dans la note de paiement · <a href="mailto:hello@laserta.fr">hello@laserta.fr</a></p>
+            <div class="confirm-banner" id="confirmBanner">
+        <div class="confirm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="confirm-text">
+          <strong>Vos informations de commande ont bien été reçues !</strong>
+          <p>Merci de procéder au règlement pour finaliser votre commande. Vous allez être redirigé vers la page de paiement. Question ? <a href="mailto:hello@laserta.fr" style="color:var(--teal-light);">hello@laserta.fr</a></p>
+        </div>
+      </div>
+      <p class="pay-note">Paiement sécurisé via <strong>Revolut</strong> · Vos informations de livraison nous sont transmises automatiquement à la validation · <a href="mailto:hello@laserta.fr">hello@laserta.fr</a></p>
     </div>
 
     <!-- TRUST BADGES -->
@@ -321,10 +378,9 @@
           <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
         </div>
         <div class="accordion-body">
-          <p>Plaque en acrylique haute qualité <strong>10 × 2 cm</strong>, épaisseur 1,3 mm, gravée au laser avec votre texte personnalisé. Finition nette et professionnelle, résistante aux UV et à l'humidité.</p>
+          <p>Plaque en acrylique haute qualité <strong>, épaisseur 1,3 mm, gravée au laser avec votre texte personnalisé. Finition nette et professionnelle, résistante aux UV et à l'humidité.</p>
           <ul>
             <li><strong>Matière :</strong> acrylique 1,3 mm</li>
-            <li><strong>Dimensions :</strong> 100 × 20 mm (réf. R102)</li>
             <li><strong>Gravure :</strong> laser durable</li>
             <li><strong>Adhésif double face 3M</strong> pré-installé au dos</li>
             <li><strong>Fabriqué en France</strong> — Provence-Alpes-Côte d'Azur</li>
@@ -360,7 +416,7 @@
         </div>
         <div class="accordion-body">
           <p>En raison du caractère <strong>personnalisé</strong> de chaque plaque gravée sur commande, <strong>les retours ne sont pas acceptés</strong> sauf en cas de défaut de fabrication avéré de notre part.</p>
-          <p style="margin-top:0.75rem;">En cas de problème, contactez-nous à <a href="mailto:hello@laserta.fr" style="color:var(--teal-light);">hello@laserta.fr</a> avec une photo et nous trouverons une solution adaptée.</p>
+          <p style="margin-top:0.75rem;">En cas de problème, contactez-nous à <a href="/cdn-cgi/l/email-protection#5038353c3c3f103c3123352224317e3622" style="color:var(--teal-light);"><span class="__cf_email__" data-cfemail="19717c7575765975786a7c6b6d78377f6b">[email&#160;protected]</span></a> avec une photo et nous trouverons une solution adaptée.</p>
           <p style="margin-top:0.75rem;">Nous vous invitons à vérifier votre texte avec soin avant de valider votre commande — aucune modification ne peut être acceptée une fois la production lancée.</p>
         </div>
       </div>
@@ -377,7 +433,7 @@
             <li><strong>2.</strong> Cliquez sur "Commander & Payer via Revolut" et réglez le montant total.</li>
             <li><strong>3.</strong> Dans la note de paiement Revolut, précisez : <em>couleur — police — texte exact à graver — adresse de livraison.</em></li>
           </ul>
-          <p style="margin-top:0.75rem;">Vous pouvez aussi passer commande par email à <a href="mailto:hello@laserta.fr" style="color:var(--teal-light);">hello@laserta.fr</a> si vous préférez et régler par virement bancaire.</p>
+          <p style="margin-top:0.75rem;">Vous pouvez aussi passer commande par email à <a href="/cdn-cgi/l/email-protection#cca4a9a0a0a38ca0adbfa9beb8ade2aabe" style="color:var(--teal-light);"><span class="__cf_email__" data-cfemail="6d05080101022d010c1e081f190c430b1f">[email&#160;protected]</span></a> si vous préférez et régler par virement bancaire.</p>
         </div>
       </div>
 
@@ -429,11 +485,148 @@
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">Laserta</span>
-  <span class="footer-text">Signalétique des copropriétés · Made in France · hello@laserta.fr</span>
+  <span class="footer-text">Signalétique des copropriétés · Made in France · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="68000d0404072804091b0d1a1c09460e1a">[email&#160;protected]</a></span>
   <span class="footer-text">© 2026 Laserta — Tous droits réservés</span>
 </footer>
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <span class="modal-title">Finaliser la commande</span>
+      <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-title">Récapitulatif de votre commande</div>
+      <div class="modal-summary" id="modalSummary"></div>
+      <div class="amount-box">
+        <span class="amount-label">Montant à payer</span>
+        <span class="amount-value" id="modalAmount">—</span>
+      </div>
+      <div class="modal-section-title" style="margin-top:0.25rem;">Vos coordonnées</div>
+      <div class="modal-row">
+        <div class="modal-field"><label class="modal-label" for="clientPrenom">Prénom *</label><input class="modal-input" type="text" id="clientPrenom" placeholder="Jean" required></div>
+        <div class="modal-field"><label class="modal-label" for="clientNom">Nom *</label><input class="modal-input" type="text" id="clientNom" placeholder="Martin" required></div>
+      </div>
+      <div class="modal-field"><label class="modal-label" for="clientEmail">Adresse email *</label><input class="modal-input" type="email" id="clientEmail" placeholder="jean.martin@exemple.fr" required></div>
+      <div class="modal-field"><label class="modal-label" for="clientTel">Téléphone *</label><input class="modal-input" type="tel" id="clientTel" placeholder="+33 6 00 00 00 00" required></div>
+      <div class="modal-field"><label class="modal-label" for="clientAdresse">Adresse postale complète *</label><input class="modal-input" type="text" id="clientAdresse" placeholder="12 rue des Lilas, 75001 Paris" required></div>
+      <button class="btn-pay" onclick="submitOrder()" style="margin-top:0.5rem;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        Payer &mdash; Confirmer &amp; Régler via Revolut
+      </button>
+      <p style="font-size:0.75rem;font-weight:300;color:var(--gray);text-align:center;">En cliquant sur "Payer", vos informations nous sont transmises par email et vous serez redirigé vers Revolut.</p>
+    </div>
+  </div>
+</div>
+
 
 <script>
+var photos=['https://i.ebayimg.com/images/g/a0MAAeSwmxlpovhA/s-l1600.png','https://i.ebayimg.com/images/g/9DQAAeSwjH5pojBE/s-l1600.png','https://i.ebayimg.com/images/g/RrMAAeSwTKRpovhn/s-l1600.png','https://i.ebayimg.com/images/g/BHAAAeSwREFpojBR/s-l1600.png'];
+function setPhoto(idx,el){document.getElementById('mainPhoto').src=photos[idx];document.querySelectorAll('.gallery-thumb').forEach(function(t){t.classList.remove('active')});el.classList.add('active');}
+var couleurMap={acier:{label:'Acier brossé',bg:'linear-gradient(135deg,#c4c4c0,#e8e8e4,#a8a8a4)',color:'#2a2a28',border:'#b0b0ac'},or:{label:'Or brossé',bg:'linear-gradient(135deg,#c0982c,#e0c060,#a07820)',color:'#3a2a08',border:'#c0a030'},noir:{label:'Noir mat',bg:'#141414',color:'#e8e8e0',border:'#2a2a28'},blanc:{label:'Blanc mat',bg:'#f2f2ee',color:'#1c1c1a',border:'#d8d8d0'}};
+var policeMap={arial:{label:'Arial',font:'Arial,sans-serif',style:'normal'},'arial-it':{label:'Arial italique',font:'Arial,sans-serif',style:'italic'},'arial-r':{label:'Arial arrondi',font:'Arial Rounded MT Bold,Arial,sans-serif',style:'normal'},times:{label:'Times New Roman',font:"'Times New Roman',serif",style:'normal'}};
+
+function buildTextFields(qty){
+  var container=document.getElementById('textesContainer');
+  var existing=Array.from(container.querySelectorAll('.texte-field')).map(function(i){return i.value;});
+  container.innerHTML='';
+  for(var i=0;i<qty;i++){
+    var wrap=document.createElement('div');
+    wrap.className='texte-field-wrap';
+    if(qty>1){var num=document.createElement('span');num.className='texte-field-num';num.textContent='Plaque '+(i+1);wrap.appendChild(num);}
+    var inp=document.createElement('input');
+    inp.type='text';inp.className='config-input texte-field';inp.maxLength=30;
+    inp.placeholder=qty>1?'Ex : Famille Martin (plaque '+(i+1)+')':'Ex : Famille Martin';
+    inp.value=existing[i]||'';
+    inp.addEventListener('input',updatePreview);
+    wrap.appendChild(inp);
+    container.appendChild(wrap);
+  }
+  updatePreview();
+}
+
+function updatePreview(){
+  var couleur=document.getElementById('couleur').value;
+  var police=document.getElementById('police').value;
+  var firstField=document.querySelector('.texte-field');
+  var texte=firstField?firstField.value.trim():'';
+  var plate=document.getElementById('previewPlate');
+  var pt=document.getElementById('previewText');
+  if(couleur&&couleurMap[couleur]){var c=couleurMap[couleur];plate.style.background=c.bg;plate.style.borderColor=c.border;plate.style.boxShadow='0 2px 12px rgba(0,0,0,0.4)';}
+  else{plate.style.background='var(--dark-3)';plate.style.borderColor='rgba(255,255,255,0.08)';plate.style.boxShadow='none';}
+  if(police&&policeMap[police]){pt.style.fontFamily=policeMap[police].font;pt.style.fontStyle=policeMap[police].style;}
+  if(texte&&couleur){pt.textContent=texte;pt.style.color=couleurMap[couleur].color;pt.style.fontSize='14px';pt.style.fontStyle=police?policeMap[police].style:'normal';pt.style.fontFamily=police?policeMap[police].font:'DM Sans,sans-serif';}
+  else if(!texte&&couleur){pt.textContent='Votre texte ici';pt.style.color=couleurMap[couleur].color+'80';pt.style.fontStyle='italic';pt.style.fontSize='13px';}
+  else{pt.textContent="Sélectionnez vos options pour voir l'aperçu";pt.style.color='#888780';pt.style.fontStyle='italic';pt.style.fontSize='11px';}
+  updatePrice();
+}
+
+var priceTiers=[{min:1,max:1,price:5.99},{min:2,max:2,price:5.39},{min:3,max:3,price:5.09},{min:4,max:Infinity,price:4.79}];
+function getUnitPrice(qty){for(var i=0;i<priceTiers.length;i++){if(qty>=priceTiers[i].min&&qty<=priceTiers[i].max)return priceTiers[i].price;}return 4.79;}
+function updatePrice(){var qty=parseInt(document.getElementById('qtyInput').value)||1;var unit=getUnitPrice(qty);var total=(qty*unit).toFixed(2).replace('.',',');document.getElementById('priceDisplay').textContent=unit.toFixed(2).replace('.',',')+'\u00a0€';document.getElementById('totalDisplay').textContent='Total\u00a0: '+total+'\u00a0€';}
+function changeQty(delta){var input=document.getElementById('qtyInput');var val=Math.max(1,Math.min(100,(parseInt(input.value)||1)+delta));input.value=val;onQtyChange();}
+function onQtyChange(){var qty=Math.max(1,parseInt(document.getElementById('qtyInput').value)||1);buildTextFields(qty);updatePrice();}
+
+function getTextes(){return Array.from(document.querySelectorAll('.texte-field')).map(function(f,i){return{num:i+1,val:f.value.trim()};});}
+
+function openModal(){
+  var couleur=document.getElementById('couleur').value;
+  var police=document.getElementById('police').value;
+  var textes=getTextes();
+  var qty=parseInt(document.getElementById('qtyInput').value)||1;
+  if(!couleur){alert('Veuillez sélectionner une couleur / matière.');return;}
+  if(!police){alert("Veuillez sélectionner une police d'écriture.");return;}
+  var missing=null;for(var i=0;i<textes.length;i++){if(!textes[i].val){missing=textes[i];break;}}
+  if(missing){alert('Veuillez renseigner le texte pour la plaque '+missing.num+'.');return;}
+  var unit=getUnitPrice(qty);var total=(qty*unit).toFixed(2);
+  var textLines=textes.map(function(t){return '<div class="mrow"><span>Texte plaque '+t.num+'</span><span style="color:var(--off-white);font-weight:400">'+t.val+'</span></div>';}).join('');
+  document.getElementById('modalSummary').innerHTML='<div class="mrow"><span>Produit</span><span>Plaque boîte aux lettres 10×2 cm</span></div><div class="mrow"><span>Couleur</span><span>'+couleurMap[couleur].label+'</span></div><div class="mrow"><span>Police</span><span>'+policeMap[police].label+'</span></div>'+textLines+'<div class="mrow"><span>Quantité</span><span>'+qty+' pièce'+(qty>1?'s':'')+'</span></div><div class="mrow total"><span class="mlbl">Total HT</span><span class="mval">'+total.replace('.',',')+' €</span></div>';
+  document.getElementById('modalAmount').textContent=total.replace('.',',')+' €';
+  document.getElementById('modalOverlay').classList.add('visible');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){document.getElementById('modalOverlay').classList.remove('visible');document.body.style.overflow='';}
+function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+
+function submitOrder(){
+  var prenom=document.getElementById('clientPrenom').value.trim();
+  var nom=document.getElementById('clientNom').value.trim();
+  var email=document.getElementById('clientEmail').value.trim();
+  var tel=document.getElementById('clientTel').value.trim();
+  var adresse=document.getElementById('clientAdresse').value.trim();
+  if(!prenom||!nom||!email||!tel||!adresse){alert('Merci de renseigner tous les champs obligatoires (*).');return;}
+  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRe.test(email)){alert('Veuillez entrer une adresse email valide.');return;}
+  var couleur=document.getElementById('couleur').value;
+  var police=document.getElementById('police').value;
+  var qty=parseInt(document.getElementById('qtyInput').value)||1;
+  var textes=getTextes();
+  var unit=getUnitPrice(qty);
+  var total=(qty*unit).toFixed(2);
+  var textesLines=textes.map(function(t){return'Plaque '+t.num+' : '+t.val;}).join('\n');
+  var subj=encodeURIComponent('[COMMANDE] Laserta — '+prenom+' '+nom+' — '+qty+' plaque'+(qty>1?'s':'')+' — '+total+' EUR');
+  var body=encodeURIComponent(
+    '╋╋╋╋ NOUVELLE COMMANDE — Laserta ╋╋╋╋\n\n'+
+    'CLIENT\nPrénom : '+prenom+'\nNom : '+nom+'\nEmail : '+email+'\nTéléphone : '+tel+'\nAdresse : '+adresse+
+    '\n\nCOMMANDE\nProduit : Plaque boîte aux lettres 10x2 cm (réf. R102)\nCouleur : '+couleurMap[couleur].label+'\nPolice : '+policeMap[police].label+'\nQuantité : '+qty+' pièce'+(qty>1?'s':'')+
+    '\n'+textesLines+
+    '\n\nMONTANT\nPrix unitaire : '+unit.toFixed(2).replace('.',',')+' EUR HT\nTotal à régler : '+total.replace('.',',')+' EUR HT'+
+    '\n\nPaiement via Revolut : revolut.me/lasertafr'
+  );
+  window.location.href='mailto:hello@laserta.fr?subject='+subj+'&body='+body;
+  closeModal();
+  var banner=document.getElementById('confirmBanner');
+  banner.classList.add('visible');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(function(){window.open('https://revolut.me/lasertafr','_blank');},2500);
+}
+
+function toggleAccordion(header){var body=header.nextElementSibling;var icon=header.querySelector('.accordion-icon');var isOpen=body.classList.contains('open');body.classList.toggle('open',!isOpen);icon.classList.toggle('open',!isOpen);}
+
+buildTextFields(1);
+updatePrice();
+</script><script>
   const photos = [
     'https://i.ebayimg.com/images/g/a0MAAeSwmxlpovhA/s-l1600.png',
     'https://i.ebayimg.com/images/g/9DQAAeSwjH5pojBE/s-l1600.png',
@@ -533,30 +726,4 @@
 
   function changeQty(delta) {
     const input = document.getElementById('qtyInput');
-    let val = parseInt(input.value) || 1;
-    val = Math.max(1, Math.min(100, val + delta));
-    input.value = val;
-    updatePrice();
-  }
-
-  function validateAndPay() {
-    const couleur = document.getElementById('couleur').value;
-    const police = document.getElementById('police').value;
-    const texte = document.getElementById('texte').value.trim();
-    if (!couleur || !police || !texte) {
-      alert('Merci de sélectionner une couleur, une police et d\'entrer votre texte avant de passer commande.');
-      return false;
-    }
-    return true;
-  }
-
-  function toggleAccordion(header) {
-    const body = header.nextElementSibling;
-    const icon = header.querySelector('.accordion-icon');
-    const isOpen = body.classList.contains('open');
-    body.classList.toggle('open', !isOpen);
-    icon.classList.toggle('open', !isOpen);
-  }
-</script>
-</body>
-</html>
+   
