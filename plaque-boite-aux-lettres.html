@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plaque Boîte aux Lettres Personnalisée — Laserta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal: #1D9E75;
+    --teal-light: #5DCAA5;
+    --teal-dark: #0F6E56;
+    --dark: #1c1e1f;
+    --dark-2: #252729;
+    --dark-3: #2e3133;
+    --off-white: #f4f2ed;
+    --white: #ffffff;
+    --gray: #888780;
+    --gray-light: #D3D1C7;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--off-white); overflow-x: hidden; line-height: 1.6; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4%; background: rgba(28,30,31,0.95); backdrop-filter: blur(12px); border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--white); text-decoration: none; }
+  .nav-back { display: flex; align-items: center; gap: 0.5rem; color: var(--gray-light); text-decoration: none; font-size: 0.85rem; font-weight: 300; transition: color 0.2s; }
+  .nav-back:hover { color: var(--teal-light); }
+  .nav-back svg { width: 16px; height: 16px; }
+  .nav-cta { background: var(--teal); color: var(--white); padding: 0.5rem 1.2rem; border-radius: 2px; text-decoration: none; font-size: 0.85rem; font-weight: 400; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--teal-dark); }
+
+  /* BREADCRUMB */
+  .breadcrumb { margin-top: 70px; padding: 1rem 4%; display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; font-weight: 300; color: var(--gray); border-bottom: 0.5px solid rgba(255,255,255,0.04); }
+  .breadcrumb a { color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--teal-light); }
+  .breadcrumb span { color: var(--off-white); }
+
+  /* PRODUCT LAYOUT */
+  .product-page { max-width: 1200px; margin: 0 auto; padding: 3rem 4% 6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+
+  /* GALLERY */
+  .gallery { position: sticky; top: 100px; }
+  .gallery-main { width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 2px; background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.06); margin-bottom: 0.75rem; position: relative; cursor: zoom-in; }
+  .gallery-main img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+  .gallery-main:hover img { transform: scale(1.04); }
+  .gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+  .gallery-thumb { aspect-ratio: 1; overflow: hidden; border-radius: 1px; background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.06); cursor: pointer; transition: border-color 0.2s, opacity 0.2s; opacity: 0.65; }
+  .gallery-thumb.active { border-color: var(--teal); opacity: 1; }
+  .gallery-thumb:hover { opacity: 0.9; }
+  .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gallery-badge { position: absolute; top: 12px; left: 12px; background: var(--teal); color: var(--white); font-size: 0.7rem; font-weight: 400; padding: 0.25rem 0.6rem; border-radius: 1px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* PRODUCT INFO */
+  .product-info { display: flex; flex-direction: column; gap: 0; }
+  .product-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem; }
+  .product-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--white); margin-bottom: 1rem; }
+  .product-rating { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .stars { display: flex; gap: 2px; }
+  .star { color: var(--teal); font-size: 14px; }
+  .rating-text { font-size: 0.82rem; font-weight: 300; color: var(--gray); }
+
+  /* PRICE */
+  .price-block { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.06); border-radius: 2px; padding: 1.5rem; margin-bottom: 1.5rem; }
+  .price-main { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; }
+  .price-current { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--white); font-weight: 400; }
+  .price-unit { font-size: 0.85rem; font-weight: 300; color: var(--gray); }
+  .price-tiers { display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 0.5px solid rgba(255,255,255,0.06); }
+  .price-tier { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; font-weight: 300; color: var(--gray-light); }
+  .price-tier.best { color: var(--teal-light); font-weight: 400; }
+  .price-tier-qty { }
+  .price-tier-val { font-weight: 400; }
+  .price-ht-note { font-size: 0.72rem; color: var(--gray); margin-top: 0.75rem; font-style: italic; }
+
+  /* CONFIGURATOR */
+  .configurator { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1.5rem; }
+  .config-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .config-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); }
+  .config-select { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.12); border-radius: 1px; padding: 0.75rem 1rem; color: var(--off-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; outline: none; transition: border-color 0.2s; width: 100%; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888780' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+  .config-select:focus { border-color: var(--teal); }
+  .config-select option { background: var(--dark-2); }
+  .config-input { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.12); border-radius: 1px; padding: 0.75rem 1rem; color: var(--off-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; outline: none; transition: border-color 0.2s; width: 100%; }
+  .config-input:focus { border-color: var(--teal); }
+  .config-input::placeholder { color: var(--gray); }
+  .config-hint { font-size: 0.75rem; font-weight: 300; color: var(--gray); margin-top: 0.3rem; }
+
+  /* PREVIEW */
+  .preview-block { background: var(--dark-3); border: 0.5px solid rgba(255,255,255,0.06); border-radius: 2px; padding: 1.2rem; margin-bottom: 1.5rem; }
+  .preview-label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.8rem; font-weight: 400; }
+  .preview-plate { width: 200px; height: 50px; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.3s ease; border: 0.5px solid rgba(0,0,0,0.2); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .preview-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
+
+  /* QTY + CTA */
+  .qty-cta { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .qty-row { display: flex; align-items: center; gap: 1rem; }
+  .qty-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); }
+  .qty-ctrl { display: flex; align-items: center; border: 0.5px solid rgba(255,255,255,0.12); border-radius: 1px; overflow: hidden; }
+  .qty-btn { background: var(--dark-2); color: var(--off-white); border: none; width: 36px; height: 36px; font-size: 1.1rem; cursor: pointer; transition: background 0.15s; display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; }
+  .qty-btn:hover { background: var(--dark-3); }
+  .qty-val { width: 44px; height: 36px; text-align: center; background: var(--dark); color: var(--off-white); border: none; border-left: 0.5px solid rgba(255,255,255,0.06); border-right: 0.5px solid rgba(255,255,255,0.06); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; }
+  .qty-total { font-size: 0.85rem; color: var(--teal-light); font-weight: 400; margin-left: auto; }
+  .btn-pay { background: var(--teal); color: var(--white); border: none; border-radius: 1px; padding: 1rem 2rem; font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 400; cursor: pointer; width: 100%; transition: background 0.2s, transform 0.15s; display: flex; align-items: center; justify-content: center; gap: 0.75rem; text-decoration: none; }
+  .btn-pay:hover { background: var(--teal-dark); transform: translateY(-1px); }
+  .btn-pay svg { width: 20px; height: 20px; }
+  .btn-contact { background: transparent; color: var(--off-white); border: 0.5px solid rgba(255,255,255,0.15); border-radius: 1px; padding: 0.85rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; cursor: pointer; width: 100%; transition: border-color 0.2s; text-align: center; text-decoration: none; display: block; }
+  .btn-contact:hover { border-color: var(--teal-light); color: var(--teal-light); }
+  .pay-note { font-size: 0.75rem; font-weight: 300; color: var(--gray); text-align: center; margin-top: 0.5rem; }
+  .pay-note a { color: var(--teal-light); text-decoration: none; }
+
+  /* TRUST BADGES */
+  .trust-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .trust-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; font-weight: 300; color: var(--gray-light); }
+  .trust-item svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--teal); }
+
+  /* ACCORDIONS */
+  .accordions { border-top: 0.5px solid rgba(255,255,255,0.06); }
+  .accordion { border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+  .accordion-header { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 0; cursor: pointer; user-select: none; transition: color 0.2s; }
+  .accordion-header:hover { color: var(--teal-light); }
+  .accordion-title { font-size: 0.88rem; font-weight: 400; letter-spacing: 0.02em; }
+  .accordion-icon { width: 16px; height: 16px; color: var(--gray); transition: transform 0.25s; flex-shrink: 0; }
+  .accordion-icon.open { transform: rotate(45deg); }
+  .accordion-body { display: none; padding-bottom: 1.2rem; font-size: 0.85rem; font-weight: 300; color: var(--gray-light); line-height: 1.8; }
+  .accordion-body.open { display: block; }
+  .accordion-body strong { color: var(--off-white); font-weight: 400; }
+  .accordion-body ul { margin: 0.5rem 0 0 1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+  .accordion-body table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; }
+  .accordion-body table th { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray); padding: 0.4rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.08); text-align: left; font-weight: 400; }
+  .accordion-body table td { padding: 0.4rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.04); color: var(--gray-light); font-weight: 300; }
+  .accordion-body table td:last-child { text-align: right; color: var(--teal-light); font-weight: 400; }
+
+  /* FULL WIDTH DESCRIPTION */
+  .product-description { max-width: 1200px; margin: 0 auto; padding: 0 4% 6rem; }
+  .desc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5px; background: rgba(255,255,255,0.05); border: 0.5px solid rgba(255,255,255,0.05); margin-top: 3rem; }
+  .desc-card { background: var(--dark-2); padding: 2rem; }
+  .desc-card h4 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--white); margin-bottom: 0.6rem; }
+  .desc-card p { font-size: 0.85rem; font-weight: 300; color: var(--gray); line-height: 1.7; }
+  .desc-card .icon { width: 32px; height: 32px; background: rgba(29,158,117,0.12); border: 0.5px solid rgba(29,158,117,0.25); border-radius: 2px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+  .desc-card .icon svg { width: 16px; height: 16px; }
+
+  /* FOOTER */
+  footer { background: var(--dark); border-top: 0.5px solid rgba(255,255,255,0.06); padding: 2rem 4%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--white); }
+  .footer-text { font-size: 0.78rem; font-weight: 300; color: var(--gray); }
+
+  @media (max-width: 900px) {
+    .product-page { grid-template-columns: 1fr; gap: 3rem; }
+    .gallery { position: static; }
+    .desc-grid { grid-template-columns: 1fr; }
+    .trust-badges { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Laserta</a>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+    Retour au catalogue
+  </a>
+  <a href="index.html#contact" class="nav-cta">Devis sur mesure</a>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="#888780" stroke-width="1"/></svg>
+  <a href="index.html#produits">Produits</a>
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="#888780" stroke-width="1"/></svg>
+  <span>Plaque boîte aux lettres</span>
+</div>
+
+<!-- PRODUCT PAGE -->
+<div class="product-page">
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <div class="gallery-main" id="mainImg">
+      <div class="gallery-badge">Personnalisable</div>
+      <img id="mainPhoto" src="https://i.ebayimg.com/images/g/a0MAAeSwmxlpovhA/s-l1600.png" alt="Plaque boîte aux lettres personnalisée Laserta — acier brossé">
+    </div>
+    <div class="gallery-thumbs">
+      <div class="gallery-thumb active" onclick="setPhoto(0, this)">
+        <img src="https://i.ebayimg.com/images/g/a0MAAeSwmxlpovhA/s-l500.jpg" alt="Vue 1 — acier brossé">
+      </div>
+      <div class="gallery-thumb" onclick="setPhoto(1, this)">
+        <img src="https://i.ebayimg.com/images/g/9DQAAeSwjH5pojBE/s-l500.jpg" alt="Vue 2 — or brossé">
+      </div>
+      <div class="gallery-thumb" onclick="setPhoto(2, this)">
+        <img src="https://i.ebayimg.com/images/g/RrMAAeSwTKRpovhn/s-l500.jpg" alt="Vue 3 — noir mat">
+      </div>
+      <div class="gallery-thumb" onclick="setPhoto(3, this)">
+        <img src="https://i.ebayimg.com/images/g/BHAAAeSwREFpojBR/s-l500.jpg" alt="Vue 4 — détail adhésif">
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT INFO -->
+  <div class="product-info">
+    <div class="product-label">Laserta · Signalétique des copropriétés</div>
+    <h1 class="product-title">Plaque Boîte aux Lettres Personnalisée — 10 × 2 cm · Acrylique</h1>
+
+    <div class="product-rating">
+      <div class="stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <span class="rating-text">2 avis · 7 vendus · 100 % d'évaluations positives</span>
+    </div>
+
+    <!-- PRICE -->
+    <div class="price-block">
+      <div class="price-main">
+        <span class="price-current" id="priceDisplay">5,99 €</span>
+        <span class="price-unit">/ pièce HT</span>
+      </div>
+      <div class="price-tiers">
+        <div class="price-tier"><span class="price-tier-qty">1 pièce</span><span class="price-tier-val">5,99 € / pièce</span></div>
+        <div class="price-tier"><span class="price-tier-qty">2 pièces</span><span class="price-tier-val">5,39 € / pièce</span></div>
+        <div class="price-tier"><span class="price-tier-qty">3 pièces</span><span class="price-tier-val">5,09 € / pièce</span></div>
+        <div class="price-tier best"><span class="price-tier-qty">4 pièces et +</span><span class="price-tier-val">4,79 € / pièce ✦ meilleur tarif</span></div>
+      </div>
+      <p class="price-ht-note">TVA non applicable — article 293 B du CGI · Depuis Nice, France</p>
+    </div>
+
+    <!-- CONFIGURATOR -->
+    <div class="configurator">
+
+      <div class="config-group">
+        <label class="config-label" for="couleur">Couleur / Matière</label>
+        <select class="config-select" id="couleur" onchange="updatePreview()">
+          <option value="">— Sélectionner —</option>
+          <option value="acier">Acier brossé</option>
+          <option value="or">Or brossé</option>
+          <option value="noir">Noir mat</option>
+          <option value="blanc">Blanc mat</option>
+        </select>
+      </div>
+
+      <div class="config-group">
+        <label class="config-label" for="police">Police d'écriture</label>
+        <select class="config-select" id="police" onchange="updatePreview()">
+          <option value="">— Sélectionner —</option>
+          <option value="arial">Arial</option>
+          <option value="arial-it">Arial italique</option>
+          <option value="arial-r">Arial arrondi</option>
+          <option value="times">Times New Roman</option>
+        </select>
+      </div>
+
+      <div class="config-group">
+        <label class="config-label" for="texte">Votre texte à graver</label>
+        <input class="config-input" type="text" id="texte" maxlength="30" placeholder="Ex : Famille Martin" oninput="updatePreview()">
+        <span class="config-hint">30 caractères maximum · Majuscules, minuscules, espaces et accents acceptés</span>
+      </div>
+
+    </div>
+
+    <!-- LIVE PREVIEW -->
+    <div class="preview-block">
+      <div class="preview-label">Aperçu en temps réel</div>
+      <div class="preview-plate" id="previewPlate">
+        <span class="preview-text" id="previewText" style="color:#888780;font-style:italic;font-size:11px;">Sélectionnez vos options pour voir l'aperçu</span>
+      </div>
+    </div>
+
+    <!-- QTY + BUY -->
+    <div class="qty-cta">
+      <div class="qty-row">
+        <span class="qty-label">Quantité</span>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <input class="qty-val" type="number" id="qtyInput" value="1" min="1" max="100" oninput="updatePrice()">
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+        <span class="qty-total" id="totalDisplay">Total : 5,99 €</span>
+      </div>
+
+      <a href="https://revolut.me/lasertafr" target="_blank" class="btn-pay" id="payBtn" onclick="return validateAndPay()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        Commander & Payer via Revolut
+      </a>
+
+      <a href="mailto:hello@laserta.fr?subject=Commande plaque boîte aux lettres&body=Bonjour,%0D%0A%0D%0AJe souhaite commander une plaque boîte aux lettres.%0D%0A%0D%0ATexte à graver :%0D%0ACouleur :%0D%0APolice :%0D%0AQuantité :%0D%0A%0D%0AMerci" class="btn-contact">
+        Préférer commander par email
+      </a>
+
+      <p class="pay-note">Paiement sécurisé via <strong>Revolut</strong> · Indiquez vos choix (couleur, police, texte) dans la note de paiement · <a href="mailto:hello@laserta.fr">hello@laserta.fr</a></p>
+    </div>
+
+    <!-- TRUST BADGES -->
+    <div class="trust-badges">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+        Gravure laser précise
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="22" height="16" rx="2"/><path d="M1 9h22"/></svg>
+        Adhésif 3M inclus au dos
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Expédié depuis Nice
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Livraison Lettre Verte
+      </div>
+    </div>
+
+    <!-- ACCORDIONS -->
+    <div class="accordions">
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span class="accordion-title">Description du produit</span>
+          <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="accordion-body">
+          <p>Plaque en acrylique haute qualité <strong>10 × 2 cm</strong>, épaisseur 1,3 mm, gravée au laser avec votre texte personnalisé. Finition nette et professionnelle, résistante aux UV et à l'humidité.</p>
+          <ul>
+            <li><strong>Matière :</strong> acrylique 1,3 mm</li>
+            <li><strong>Dimensions :</strong> 100 × 20 mm (réf. R102)</li>
+            <li><strong>Gravure :</strong> laser, profonde et durable</li>
+            <li><strong>Adhésif double face 3M</strong> pré-installé au dos</li>
+            <li><strong>Fabriqué en France</strong> — Nice, Provence-Alpes-Côte d'Azur</li>
+            <li>Personnalisation texte, couleur et police d'écriture</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span class="accordion-title">Frais de livraison</span>
+          <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="accordion-body">
+          <p>Expédition depuis <strong>Nice, France</strong> en Lettre Verte avec suivi pour les petites commandes.</p>
+          <table>
+            <thead><tr><th>Quantité</th><th>Mode</th><th>Coût</th></tr></thead>
+            <tbody>
+              <tr><td>1 à 19 pièces</td><td>Lettre Verte suivie</td><td>5,99 €</td></tr>
+              <tr><td>20 à 49 pièces</td><td>Colissimo signé</td><td>14,59 €</td></tr>
+              <tr><td>50 à 99 pièces</td><td>Colissimo signé</td><td>16,19 €</td></tr>
+              <tr><td>≥ 1 000 € HT</td><td>Colissimo signé</td><td>FRANCO</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:0.8rem;">Délai de fabrication et expédition : <strong>5 à 10 jours ouvrés</strong>. France métropolitaine uniquement.</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span class="accordion-title">Conditions de retour</span>
+          <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="accordion-body">
+          <p>En raison du caractère <strong>personnalisé</strong> de chaque plaque gravée sur commande, <strong>les retours ne sont pas acceptés</strong> sauf en cas de défaut de fabrication avéré de notre part.</p>
+          <p style="margin-top:0.75rem;">En cas de problème (casse à la livraison, erreur de notre côté), contactez-nous à <a href="mailto:hello@laserta.fr" style="color:var(--teal-light);">hello@laserta.fr</a> avec une photo et nous trouverons une solution adaptée.</p>
+          <p style="margin-top:0.75rem;">Nous vous invitons à vérifier votre texte avec soin avant de valider votre commande — aucune modification ne peut être acceptée une fois la production lancée.</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span class="accordion-title">Comment passer commande ?</span>
+          <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="accordion-body">
+          <p>La commande se fait en 3 étapes simples :</p>
+          <ul>
+            <li><strong>1.</strong> Configurez votre plaque : couleur, police, texte et quantité sur cette page.</li>
+            <li><strong>2.</strong> Cliquez sur "Commander & Payer via Revolut" et réglez le montant total.</li>
+            <li><strong>3.</strong> Dans la note de paiement Revolut, précisez : <em>couleur — police — texte exact à graver — adresse de livraison.</em></li>
+          </ul>
+          <p style="margin-top:0.75rem;">Vous pouvez aussi passer commande par email à <a href="mailto:hello@laserta.fr" style="color:var(--teal-light);">hello@laserta.fr</a> si vous préférez.</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span class="accordion-title">Remises & commandes en volume</span>
+          <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="accordion-body">
+          <table>
+            <thead><tr><th>Quantité</th><th>Prix unitaire HT</th><th>Économie</th></tr></thead>
+            <tbody>
+              <tr><td>1 pièce</td><td>5,99 €</td><td>—</td></tr>
+              <tr><td>2 pièces</td><td>5,39 €</td><td>− 10 %</td></tr>
+              <tr><td>3 pièces</td><td>5,09 €</td><td>− 15 %</td></tr>
+              <tr><td>4 pièces et +</td><td>4,79 €</td><td>− 20 %</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:0.8rem;">Pour des commandes de <strong>10 lots et plus</strong> (copropriétés, syndics), contactez-nous pour un devis personnalisé avec tarification dégressive supplémentaire.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- DESCRIPTION FULL WIDTH -->
+<div class="product-description">
+  <div class="section-label" style="font-size:0.72rem;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:0.8rem;">Pourquoi choisir Laserta</div>
+  <div class="desc-grid">
+    <div class="desc-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.5"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
+      <h4>Gravure laser de précision</h4>
+      <p>Chaque plaque est gravée au laser avec une précision au dixième de millimètre. Le résultat est net, durable et résistant aux UV et à l'humidité extérieure.</p>
+    </div>
+    <div class="desc-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg></div>
+      <h4>Adhésif 3M inclus</h4>
+      <p>Chaque plaque est livrée avec un adhésif double face 3M pré-installé au dos. Pose rapide et sans perçage sur votre boîte aux lettres ou interphone.</p>
+    </div>
+    <div class="desc-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg></div>
+      <h4>Made in France</h4>
+      <p>Fabrication artisanale dans notre atelier de Nice, en Provence-Alpes-Côte d'Azur. Chaque commande est préparée à la main avec soin avant expédition.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Laserta</span>
+  <span class="footer-text">Signalétique des copropriétés · Made in France · hello@laserta.fr</span>
+  <span class="footer-text">© 2026 Laserta — Tous droits réservés</span>
+</footer>
+
+<script>
+  const photos = [
+    'https://i.ebayimg.com/images/g/a0MAAeSwmxlpovhA/s-l1600.png',
+    'https://i.ebayimg.com/images/g/9DQAAeSwjH5pojBE/s-l1600.png',
+    'https://i.ebayimg.com/images/g/RrMAAeSwTKRpovhn/s-l1600.png',
+    'https://i.ebayimg.com/images/g/BHAAAeSwREFpojBR/s-l1600.png'
+  ];
+
+  function setPhoto(idx, el) {
+    document.getElementById('mainPhoto').src = photos[idx];
+    document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  const couleurMap = {
+    acier: { bg: 'linear-gradient(135deg, #c4c4c0, #e8e8e4, #a8a8a4)', color: '#2a2a28', border: '#b0b0ac' },
+    or:    { bg: 'linear-gradient(135deg, #c0982c, #e0c060, #a07820)', color: '#3a2a08', border: '#c0a030' },
+    noir:  { bg: '#141414', color: '#e8e8e0', border: '#2a2a28' },
+    blanc: { bg: '#f2f2ee', color: '#1c1c1a', border: '#d8d8d0' }
+  };
+
+  const policeMap = {
+    arial:    'Arial, sans-serif',
+    'arial-it': 'Arial, sans-serif',
+    'arial-r':'Arial Rounded MT Bold, Arial, sans-serif',
+    times:   "'Times New Roman', serif"
+  };
+
+  const policeStyleMap = {
+    'arial-it': 'italic',
+  };
+
+  function updatePreview() {
+    const couleur = document.getElementById('couleur').value;
+    const police = document.getElementById('police').value;
+    const texte = document.getElementById('texte').value.trim();
+    const plate = document.getElementById('previewPlate');
+    const previewText = document.getElementById('previewText');
+
+    if (couleur && couleurMap[couleur]) {
+      const c = couleurMap[couleur];
+      plate.style.background = c.bg;
+      plate.style.borderColor = c.border;
+      plate.style.boxShadow = '0 2px 12px rgba(0,0,0,0.4)';
+    } else {
+      plate.style.background = 'var(--dark-3)';
+      plate.style.borderColor = 'rgba(255,255,255,0.08)';
+      plate.style.boxShadow = 'none';
+    }
+
+    if (police && policeMap[police]) {
+      previewText.style.fontFamily = policeMap[police];
+      previewText.style.fontStyle = policeStyleMap[police] || 'normal';
+    }
+
+    if (texte && couleur) {
+      previewText.textContent = texte;
+      previewText.style.color = couleurMap[couleur] ? couleurMap[couleur].color : 'var(--off-white)';
+      previewText.style.fontStyle = policeStyleMap[police] || 'normal';
+      previewText.style.fontFamily = policeMap[police] || 'DM Sans, sans-serif';
+      previewText.style.fontSize = '14px';
+    } else if (!texte && couleur) {
+      previewText.textContent = 'Votre texte ici';
+      previewText.style.color = couleurMap[couleur] ? couleurMap[couleur].color + '80' : 'var(--gray)';
+      previewText.style.fontStyle = 'italic';
+      previewText.style.fontSize = '13px';
+    } else {
+      previewText.textContent = 'Sélectionnez vos options pour voir l\'aperçu';
+      previewText.style.color = '#888780';
+      previewText.style.fontStyle = 'italic';
+      previewText.style.fontSize = '11px';
+    }
+
+    updatePrice();
+  }
+
+  const priceTiers = [
+    { min: 1, max: 1, price: 5.99 },
+    { min: 2, max: 2, price: 5.39 },
+    { min: 3, max: 3, price: 5.09 },
+    { min: 4, max: Infinity, price: 4.79 }
+  ];
+
+  function getUnitPrice(qty) {
+    for (const t of priceTiers) {
+      if (qty >= t.min && qty <= t.max) return t.price;
+    }
+    return 4.79;
+  }
+
+  function updatePrice() {
+    const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+    const unit = getUnitPrice(qty);
+    const total = (qty * unit).toFixed(2).replace('.', ',');
+    document.getElementById('priceDisplay').textContent = unit.toFixed(2).replace('.', ',') + ' €';
+    document.getElementById('totalDisplay').textContent = 'Total : ' + total + ' €';
+  }
+
+  function changeQty(delta) {
+    const input = document.getElementById('qtyInput');
+    let val = parseInt(input.value) || 1;
+    val = Math.max(1, Math.min(100, val + delta));
+    input.value = val;
+    updatePrice();
+  }
+
+  function validateAndPay() {
+    const couleur = document.getElementById('couleur').value;
+    const police = document.getElementById('police').value;
+    const texte = document.getElementById('texte').value.trim();
+    if (!couleur || !police || !texte) {
+      alert('Merci de sélectionner une couleur, une police et d\'entrer votre texte avant de passer commande.');
+      return false;
+    }
+    return true;
+  }
+
+  function toggleAccordion(header) {
+    const body = header.nextElementSibling;
+    const icon = header.querySelector('.accordion-icon');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    icon.classList.toggle('open', !isOpen);
+  }
+</script>
+</body>
+</html>
